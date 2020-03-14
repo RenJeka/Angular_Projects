@@ -1,0 +1,18 @@
+<p>I am Hello world component</p>
+
+
+<div id="myDiv"> </div>
+
+
+
+<button (click)="getValue()">Click</button>
+
+<ul id="myUl"></ul>
+
+
+<ul id="ulUseForCycle" >
+    <li *ngFor="let value of myValues" >
+      <a href={{value.link}} target="_blank">{{value.greeting}}</a>
+    </li>
+    <br>
+</ul>

@@ -1,0 +1,50 @@
+@font-face{
+	font-family: 'banco';
+	src: url(../assets/banco.ttf);
+}
+
+h1{
+	font-family: Helvetica, sans-serif;
+	text-align: center;
+	margin-top: 70px;
+	color: #a71111e5;
+}
+
+.wrapper{
+	display: flex;
+	justify-content: space-between;
+	height: 100vh;
+}
+
+.menu{
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+}
+
+.components{
+	box-sizing: border-box;
+	flex-grow: 5;
+	
+}
+
+.btn{
+	background-color: #cc5c5c;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+	border-radius: 5px;
+	display: inline;
+	width: 150px;
+	margin-bottom: 10px;
+	text-align: center;
+	
+	&:hover{
+		background-color: #e66b6b;
+	}
+}
+
+.btn-active{
+	background-color: #ad4c4c;
+}
+
