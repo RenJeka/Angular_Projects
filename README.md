@@ -1,11 +1,11 @@
-                                                                                               [![Angular logo](img/angular.svg)](https://renjeka.github.io/Angular_Projects)
+                                                                                              [![Angular logo](img/angular.svg)](https://renjeka.github.io/Angular_Projects)
 
 # ANGUAR PROJECTS
 
 [Come to my Angular project - list](https://renjeka.github.io/Angular_Projects/  "My Angular site")
-
+---
 #### Hello!
-Here is my all Angular projects, I make.
+Here is my all Angular projects, I've made.
 
 I appreciate your interest in my projects. Come and see everything. Here you are always welcome! 
 
