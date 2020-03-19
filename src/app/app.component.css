@@ -1,10 +1,5 @@
-@font-face {
-  font-family: 'banco';
-  src: url(../assets/banco.ttf);
-}
-
 h1 {
-  font-family: Helvetica, sans-serif;
+  font-family: banco;
   text-align: center;
   margin-top: 70px;
   color: #a71111e5;
