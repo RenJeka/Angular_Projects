@@ -2,7 +2,7 @@
 
 [Come to my Angular project - list](https://renjeka.github.io/Angular_Projects/  "My Angular site")
 
-![logo](Angular.gif)
+![logo](angular.gif)
 
 #### Hello!
 Here is my all Angular projects, I make.
