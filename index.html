@@ -29,6 +29,10 @@
         img{
             width: 100px;
         }
+        img:hover{
+            transition: 1s;
+            filter: drop-shadow(0 0 4px black);
+        }
         h1{
             color: #DD0031;
             font-family: 'Segoe UI', "Lucida Sans Unicod", "Franklin Gothic", Tahoma, Geneva, Verdana, sans-serif;
@@ -63,19 +67,7 @@
 <body>
 <div class="container">
     <div class="inner">
-        <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 256 272"
-                height="100px"
-                width="100px">
-            <title>Angular logo</title>
-            <g>
-                <polygon points="127.402 143.539 152.803 143.539 126.307 88.156 125.908 89.102 125.908 143.539 126.107 143.539 127.402 143.539" style="fill: #b52e31"/>
-                <polygon points="102.998 143.539 125.908 143.539 125.908 89.102 102.998 143.539" style="fill: #e23237"/>
-                <polygon points="125.908 0.697 125.908 32.717 126.107 32.274 208.286 207.191 180.296 206.693 163.063 166.848 126.307 166.848 126.207 166.848 125.908 166.848 125.908 271.141 234.185 211.175 255.104 44.725 125.908 0.697" style="fill: #b52e31"/>
-                <polygon points="92.738 166.848 76.999 206.195 47.714 206.693 125.908 32.717 125.908 0.697 0.1 45.522 19.325 211.972 125.908 271.141 125.908 166.848 92.738 166.848" style="fill: #e23237"/>
-            </g>
-        </svg>
+        <img src="img/angular.svg" alt="Angular logo">
         <h1>My angular projects</h1>
         <h3><a href="">My-first-app</a></h3>
     </div>
