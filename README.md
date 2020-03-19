@@ -5,6 +5,8 @@
 ![Angular logo gif](img/angular.gif)
 ![Angular logo](img/angular.svg)
 ![square](img/square.gif)
+![square200](img/square200.gif)
+![square original](img/giphy_1.gif)
 #### Hello!
 Here is my all Angular projects, I make.
 

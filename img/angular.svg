@@ -1,4 +1,9 @@
-<svg id="Слой_1" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+<svg id="Слой_1"
+     data-name="Слой 1"
+     xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 256 272"
+     height="100px"
+     width="100px">
   <title>Монтажная область 11</title>
   <g>
     <polygon points="127.402 143.539 152.803 143.539 126.307 88.156 125.908 89.102 125.908 143.539 126.107 143.539 127.402 143.539" style="fill: #b52e31"/>
