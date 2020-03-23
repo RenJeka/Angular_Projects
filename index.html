@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Angular projects</title>
     <style>
         html,
-        body{
+        body {
             margin: 0;
             padding: 0;
         }
-        .container{
+
+        .container {
             width: 100%;
             height: calc(100vh - 2 * 100px);
-            margin: 100px auto ;
+            margin: 100px auto;
             background-color: #969696;
         }
-        .inner{
+
+        .inner {
             background-color: rgba(255, 250, 228, 0.68);
             width: 50%;
             height: 100%;
@@ -26,19 +29,22 @@
             text-align: center;
         }
 
-        img{
+        img {
             width: 100px;
         }
-        img:hover{
+
+        img:hover {
             transition: 1s;
             filter: drop-shadow(0 0 4px black);
         }
-        h1{
+
+        h1 {
             color: #DD0031;
             font-family: 'Segoe UI', "Lucida Sans Unicod", "Franklin Gothic", Tahoma, Geneva, Verdana, sans-serif;
             text-transform: uppercase;
         }
-        a{
+
+        a {
             padding: 1px 5px;
             /*background-color: #fff;*/
             border-radius: 8px;
@@ -47,17 +53,19 @@
             color: #29b3f5d4;
             /*transition: .2s;*/
         }
-        a:hover{
+
+        a:hover {
             text-shadow: 0 3px 3px gainsboro;
             color: #26d6f1;
         }
-        a:active{
+
+        a:active {
             color: #29b3f5d4;
             text-shadow: 0 0 5px #ccc;
         }
 
-        @media screen and (max-width: 900px){
-            .inner{
+        @media screen and (max-width: 900px) {
+            .inner {
                 width: 100%;
             }
         }
@@ -65,13 +73,14 @@
 </head>
 
 <body>
-<div class="container">
-    <div class="inner">
-        <img src="img/angular.svg" alt="Angular logo">
-        <h1>My angular projects</h1>
-        <h3><a href="">My-first-app</a></h3>
+    <div class="container">
+        <div class="inner">
+            <img src="img/angular.svg" alt="Angular logo">
+            <h1>My angular projects</h1>
+            <h3><a href="/first-app/dist/firstapp/firstapp.html">My-first-app</a></h3>
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>
