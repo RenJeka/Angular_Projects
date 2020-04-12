@@ -6,52 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Angular projects</title>
     <style>
+        @font-face {
+            font-family: BaronNeue;
+            src: url("fonts/Baron_Neue.woff") format("woff"),
+                 url("fonts/Baron_Neue.otf") format("otf");
+            font-weight: normal;
+        }
+
+        @font-face {
+            font-family: BaronNeue;
+            src: url("fonts/Baron_Neue_Bold.otf") format("otf");
+            font-weight: bold;
+        }
         html,
         body {
             margin: 0;
             padding: 0;
         }
 
+        *{
+            font-family: BaronNeue;
+            font-weight: normal;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5{
+            text-align: center;
+        }
+
         .container {
             width: 100%;
             height: 100vh;
-            margin: 100px auto;
-            background-color: #969696;
+            margin: 0 auto;
         }
 
         .inner {
-            background-color: rgba(255, 250, 228, 0.68);
-            width: 50%;
-            height: 100%;
-            margin: 0 auto;
-            padding: 50px;
+            display: flex;
             box-sizing: border-box;
-            text-align: center;
+            flex-flow: column wrap;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 100px 50px;
+            background: #f2f1ed url("img/bg-texture-1.png");
         }
 
         img {
             width: 100px;
+            transition: 1s;
         }
 
         img:hover {
-            transition: 1s;
             filter: drop-shadow(0 0 4px black);
         }
 
         h1 {
+            margin-top: 40px;
             color: #DD0031;
-            font-family: 'Segoe UI', "Lucida Sans Unicod", "Franklin Gothic", Tahoma, Geneva, Verdana, sans-serif;
-            text-transform: uppercase;
+            /*text-transform: uppercase;*/
+        }
+
+        hr{
+            width: 100px;
+            height: 4px;
+            border: none;
+            border-radius: 15px;
+            background-color: #988345;
         }
 
         a {
             padding: 1px 5px;
-            /*background-color: #fff;*/
             border-radius: 8px;
             font-size: 1.5rem;
             text-decoration: none;
             color: #29b3f5d4;
-            /*transition: .2s;*/
+            transition: .2s;
+            text-transform: uppercase;
         }
 
         a:hover {
@@ -64,9 +98,12 @@
             text-shadow: 0 0 5px #ccc;
         }
 
-        @media screen and (max-width: 900px) {
-            .inner {
-                width: 100%;
+        @media screen and (max-width: 700px) {
+            .inner{
+                padding: 50px;
+            }
+            h1{
+                font-size: 25px;
             }
         }
     </style>
@@ -77,7 +114,8 @@
         <div class="inner">
             <img src="img/angular.svg" alt="Angular logo">
             <h1>My angular projects</h1>
-            <h3><a href="first-app/dist/first-app/index.html">My-first-app</a></h3>
+            <hr>
+            <h3><a href="first-app/dist/first-app/index.html">First-app</a></h3>
         </div>
     </div>
 
