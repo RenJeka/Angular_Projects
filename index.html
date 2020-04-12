@@ -22,6 +22,7 @@
         body {
             margin: 0;
             padding: 0;
+            height: 100%;
         }
 
         *{
@@ -39,19 +40,21 @@
 
         .container {
             width: 100%;
-            height: 100vh;
+            min-height: 100vh;
+            display: flex;
+            flex-flow: column;
             margin: 0 auto;
         }
 
-        .inner {
+        .section {
             display: flex;
             box-sizing: border-box;
-            flex-flow: column wrap;
+            flex-flow: column nowrap;
             justify-content: flex-start;
             align-items: center;
             width: 100%;
-            height: 100%;
-            padding: 100px 50px;
+            min-height: 100vh;
+            padding: 100px 50px 20px;
             background: #f2f1ed url("img/bg-texture-1.png");
         }
 
@@ -98,9 +101,13 @@
             text-shadow: 0 0 5px #ccc;
         }
 
+        span{
+            margin-top: auto;
+            font-size: 12px;
+        }
         @media screen and (max-width: 700px) {
-            .inner{
-                padding: 50px;
+            .section{
+                padding: 50px 50px 20px;
             }
             h1{
                 font-size: 25px;
@@ -111,12 +118,14 @@
 
 <body>
     <div class="container">
-        <div class="inner">
+        <section class="section">
             <img src="img/angular.svg" alt="Angular logo">
             <h1>My angular projects</h1>
             <hr>
-            <h3><a href="first-app/dist/first-app/index.html">First-app</a></h3>
-        </div>
+            <h3><a href="first-app/index.html">First-app</a></h3>
+<!--            <h3><a href="first-app/dist/first-app/index.html">First-app</a></h3>-->
+            <span>&copy; Renjeka. All rights reserved</span>
+        </section>
     </div>
 
 </body>
