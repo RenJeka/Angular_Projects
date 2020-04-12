@@ -1,0 +1,34 @@
+//:host{
+//  background-color: #0a459e;
+//  width: 100%;
+//}
+
+div{
+  text-align: center;
+}
+
+h2{
+  font-family: 'Segoe UI', "Lucida Sans Unicod", "Franklin Gothic", Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 600px;
+  margin: 40px auto;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 25px;
+  color: tomato;
+}
+a.knopka {
+  display: inline-block;
+  box-sizing: border-box;
+  margin-top: 13px;
+  margin-left: 10px;
+  padding: .7em 1.5em;
+  text-decoration: none;
+  outline: none;
+  user-select: none;
+  border-radius: 5px;
+  color: #fff;
+  background: rgb(212,75,56);
+
+}
+a.knopka:hover { background: rgb(232,95,76); }
+a.knopka:active { background: rgb(152,15,0); }
