@@ -44,6 +44,8 @@
             display: flex;
             flex-flow: column;
             margin: 0 auto;
+            background: #f0efeb url("img/bg-texture-1.png");
+
         }
 
         .section {
@@ -55,7 +57,7 @@
             width: 100%;
             min-height: 100vh;
             padding: 100px 50px 20px;
-            background: #f2f1ed url("img/bg-texture-1.png");
+            background-color: rgba(237, 240, 131, 0.25);
         }
 
         img {
@@ -70,6 +72,7 @@
         h1 {
             margin-top: 40px;
             color: #DD0031;
+            font-size: 30px;
             /*text-transform: uppercase;*/
         }
 
@@ -84,7 +87,7 @@
         a {
             padding: 1px 5px;
             border-radius: 8px;
-            font-size: 1.5rem;
+            font-size: 23px;
             text-decoration: none;
             color: #29b3f5d4;
             transition: .2s;
@@ -103,14 +106,30 @@
 
         span{
             margin-top: auto;
+            padding-top: 100px;
             font-size: 12px;
+
         }
+
+        /*.footer{*/
+
+        /*}*/
+
+        /*.footer__body{*/
+        /*    max-width: 1000px;*/
+        /*    text-align: center;*/
+        /*}*/
+
         @media screen and (max-width: 700px) {
             .section{
                 padding: 50px 50px 20px;
             }
             h1{
-                font-size: 25px;
+                font-size: 22px;
+            }
+
+            a{
+                font-size: 18px;
             }
         }
     </style>
@@ -124,9 +143,16 @@
             <hr>
             <h3><a href="first-app/index.html">First-app</a></h3>
 <!--            <h3><a href="first-app/dist/first-app/index.html">First-app</a></h3>-->
-            <span>&copy; Renjeka. All rights reserved</span>
+                <span>&copy; Renjeka. All rights reserved</span>
         </section>
+
+<!--        <footer class="footer">-->
+<!--            <div class="footer__body">-->
+<!--                <span>&copy; Renjeka. All rights reserved</span>-->
+<!--            </div>-->
+<!--        </footer>-->
     </div>
+
 
 </body>
 
