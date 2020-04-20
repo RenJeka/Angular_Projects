@@ -1,0 +1,36 @@
+<div class="container col-6">
+    <h3> Заполните форму для добавления автора </h3>
+    <form novalidate [formGroup]="addAuthorForm" >
+        <div class="form-group">
+            <label for="surname">Фамилия</label>
+            <input class="form-control" id="surname" required  #surname formControlName="surname"/>
+        </div>
+        <div *ngIf="addAuthorForm.get('surname').hasError('required') && addAuthorForm.get('surname').touched" class="alert alert-danger">
+            Поле Фамилия не может быть пустым
+        </div>
+
+        <div class="form-group">
+            <label for="name">Имя</label>
+            <input class="form-control" id="name" required #name formControlName="name"/>
+        </div>
+        <div *ngIf="addAuthorForm.get('name').hasError('required') && addAuthorForm.get('name').touched" class="alert alert-danger">
+            Поле Имя не может быть пустым
+        </div>
+
+        <div class="form-group">
+            <label for="secondname">Отчество/Второе имя</label>
+            <input class="form-control" id="secondname" #secondname formControlName="secondname"/>
+        </div>
+
+        <div class="form-group">
+            <label for="birthdate">Дата рождения</label>
+            <input type="date" class="form-control" id="birthdate" required #birthdate formControlName="birthdate"/>
+        </div>
+        <div *ngIf="addAuthorForm.get('birthdate').hasError('required') && addAuthorForm.get('birthdate').touched" class="alert alert-danger">
+            Поле Дата рождения не может быть пустым
+        </div>
+
+        <button type="submit" [disabled]="!addAuthorForm.valid" class="btn btn-primary" (click)="createAuthor(surname.value, name.value, secondname.value, birthdate.value)"  >Отправить</button>
+        
+    </form>
+</div>

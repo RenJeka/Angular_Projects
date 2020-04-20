@@ -1,0 +1,22 @@
+<table class="table table-striped col-8">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Дата рождения</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tr *ngFor="let item of libList">
+        <td> {{item.id}} </td>
+        <td> {{item.surname}} </td>
+        <td> {{item.name}} </td>
+        <td> {{item.secondname}} </td>
+        <td> {{item.birthdate}} </td>
+        <td> <div [routerLink]='["/lib", item.id]' class="btn btn-info "> Посмотреть книги</div> </td>
+        <td> <div [routerLink]='["/delete", item.id]' [queryParams]="{'delete':'author'}" class="btn btn-outline-danger" >X</div></td>
+    </tr>
+</table>

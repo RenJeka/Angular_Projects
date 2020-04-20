@@ -1,0 +1,17 @@
+<div *ngIf="isAuthor" class="container col-4">
+    <h4> Вы собираетесь удалить:</h4>
+    <div> {{authorList?.name}} {{authorList?.surname}}</div>
+    <div> 
+        <button class="btn btn-outline-danger m-1" (click)="deleteAuthor(authorList?.id)">Удалить?</button>
+        <button class="btn btn-outline-primary m-1" [routerLink]='["/lib"]' >Отмена</button>
+    </div>
+</div>
+
+<div *ngIf="isBook" class="container col-4">
+    <h4> Вы собираетесь удалить:</h4>
+    <div> {{booksList?.name}} </div>
+    <div> 
+        <button class="btn btn-outline-danger m-1" (click)="deleteBook(booksList?.id, booksList?.authorID)">Удалить?</button>
+        <button class="btn btn-outline-primary m-1" [routerLink]='["/lib"]' >Отмена</button>
+    </div>
+</div>

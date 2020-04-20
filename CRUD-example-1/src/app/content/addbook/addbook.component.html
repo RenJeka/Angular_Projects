@@ -1,0 +1,34 @@
+<div class="container col-6">
+    <h3> Заполните форму для добавления книги </h3>
+    <form novalidate [formGroup]="addBookForm">
+        <div class="form-group">
+            <label for="author"> Автор</label>
+            <select class="form-control" id="author" #author> 
+                <option *ngFor=" let item of authorsList" [value]="item.id"> {{item.surname}},{{item.name}}</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="name">Название книги</label>
+            <input type="text" class="form-control" id="name" required #name formControlName="name"/>
+        </div>
+        <div *ngIf="addBookForm.get('name').hasError('required') && addBookForm.get('name').touched" class="alert alert-danger">
+            Поле Название книги не может быть пустым
+        </div>
+        <div class="form-group">
+            <label for="pages">Количество страниц</label>
+            <input type="number" class="form-control" id="pages" required #pages formControlName="pages"/>
+        </div>
+        <div *ngIf="addBookForm.get('pages').hasError('required') && addBookForm.get('pages').touched" class="alert alert-danger">
+            Поле Название книги не может быть пустым
+        </div>
+        <div class="form-group">
+            <label for="genres"> Жанр</label>
+            <select class="form-control" id="genres" #genres>  
+                <option *ngFor=" let item of genresList" [value]="item.genre"> {{item.genre}}</option>
+            </select>
+        </div>
+
+        <button type="submit" [disabled]="!addBookForm.valid" class="btn btn-primary" (click)="createBook ( author.value, name.value, pages.value, genres.value)"  >Отправить</button>
+    </form>
+</div>

@@ -1,0 +1,23 @@
+<div *ngIf="isFound" class="container col-6">
+    <h3>Найдена книга</h3>
+    <table class="table table-striped">
+        <thead>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Жанр</th>
+            <th>Страниц</th>
+        </thead>
+        <tr>
+            <td>{{book?.name}}</td>
+            <td>{{author?.name}} {{author?.surname}}</td>
+            <td>{{book?.genre}}</td>
+            <td>{{book?.pages}}</td>
+        </tr>    
+    </table>
+    <button class="btn btn-info" [routerLink]='["/lib"]'> назад</button>
+</div>
+
+<div *ngIf="!isFound" class="container col-6">
+    <h3>Книга не найдена</h3>
+    <button class="btn btn-info" [routerLink]='["/lib"]'> назад</button>
+</div>

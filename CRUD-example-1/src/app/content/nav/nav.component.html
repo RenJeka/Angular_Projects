@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="col-6">
+        <div [routerLink]='["addauthor"]' class="btn btn-info "> добавить автора</div>
+        <div [routerLink]='["addbook"]' class="btn btn-info "> добавить книгу</div>
+        <div [routerLink]='["addgenre"]' class="btn btn-info "> добавить жанр</div>
+    </div>
+    <div class="col-5">
+        <form novalidate [formGroup]="searchForm">
+        <div class="form-inline">
+            <div class="form-group">
+                <input class="form-control" placeholder="Поиск по книге" id="search" #search type="text"/>
+                <button class="btn btn-info ml-1" (click)="searchBook(search.value)">Поиск!</button>
+                <button class="btn btn-info ml-1" [routerLink]='["/lib"]'>На главную</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

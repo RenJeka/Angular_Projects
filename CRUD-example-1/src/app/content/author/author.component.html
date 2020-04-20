@@ -1,0 +1,19 @@
+<h3> Автор: {{authorName}} {{authorSername}}</h3>
+
+<table class="table table-striped col-8" >
+    <thead>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Количество страниц</th>
+        <th>Жанр</th>
+        <th></th>
+        <th></th>
+    </thead>
+    <tr *ngFor="let item of authorBooksList">
+        <td> {{item.id}}</td>
+        <td> {{item.name}}</td>
+        <td> {{item.pages}}</td>
+        <td> {{item.genre}}</td>
+        <td> <div [routerLink]='["/delete", item.id]' [queryParams]="{'delete':'book'}" class="btn btn-outline-danger" >X</div></td>
+    </tr>
+</table>

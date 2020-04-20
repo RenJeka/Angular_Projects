@@ -1,0 +1,10 @@
+<div class="container col-6">
+    <h3> Заполните форму для добавления жанра </h3>
+    <form novalidate [formGroup]="addGenreForm">
+        <div class="form-group">
+            <label for="genre"> Жанр</label>
+            <input id="genre" #genre class="form-control" formControlName="genre" required/>
+        </div>
+        <button type="submit" class="btn btn-info" [disabled]="!addGenreForm.valid" (click)="createGenre(genre.value)">Отправить</button>
+    </form>
+</div>
