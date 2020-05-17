@@ -1,0 +1,10 @@
+<h2>Gallery</h2>
+
+<div class="gallery-container">
+  <div *ngFor="let galleryItem of galleryMy" class="objects">
+    <h3>{{galleryItem.title}}</h3>
+    <img (click)="goToImagePage(galleryItem)" src="{{galleryItem.url}}" alt="{{galleryItem.title}}">
+  </div>
+</div>
+
+

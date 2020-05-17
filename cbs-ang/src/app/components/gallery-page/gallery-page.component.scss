@@ -1,0 +1,23 @@
+h2{
+  text-align: center;
+}
+
+.gallery-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.objects{
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+
+  h3{
+    text-align: center;
+  }
+}
+
+img{
+  width: 300px;
+  cursor: pointer;
+}
