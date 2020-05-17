@@ -1,0 +1,14 @@
+<h1>Directives! </h1>
+
+<p><button (click)="bcgToggle = !bcgToggle">Toggle</button></p>
+
+<div [ngStyle]="{
+  width: '300px',
+  height: '150px',
+  borderRadius: '5px',
+  border: '2px solid #aaa',
+  background: bcgToggle ? 'lightgreen' : 'orange'
+
+}">
+
+</div>

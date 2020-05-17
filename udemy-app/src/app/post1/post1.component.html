@@ -1,0 +1,27 @@
+<h1>Тема — привязка данных</h1>
+
+<h4>{{title}}</h4>
+<h4>{{myArr}}</h4>
+<h4>{{obj.val1}}</h4>
+<h4>{{obj.val2}}</h4>
+<h4>{{obj.isMarried}}</h4>
+<h4>{{obj.proffession}}</h4>
+
+<input
+  type="text"
+  (keyup.enter)="onInput($event)"
+  (blur)="onBlur(myInput.value)"
+  #myInput
+>
+<br>
+<p><button (click)="onClick(myInput.value)">Click me!</button></p>
+<h2>{{inputValue}}</h2>
+<!--<input type="text" >-->
+
+<hr>
+
+<h3>2-way Data Binding</h3>
+
+<input type="text" [(ngModel)]="inputTitle">
+
+<p>{{inputTitle}}</p>
