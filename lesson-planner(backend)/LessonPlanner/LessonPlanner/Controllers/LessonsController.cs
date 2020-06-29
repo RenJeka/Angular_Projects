@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using LessonPlanner_DataLayer;
 
 namespace LessonPlanner.Controllers
 {
+    [EnableCors("*", "*", "GET, OPTIONS, PUT, DELETE")]
     public class LessonsController : ApiController
     {
         private LessonsContext db = new LessonsContext();

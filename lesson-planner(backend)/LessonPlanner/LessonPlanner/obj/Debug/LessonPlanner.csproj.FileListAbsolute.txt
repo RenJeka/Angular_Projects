@@ -100,3 +100,6 @@ D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonP
 D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner\obj\Debug\LessonPlanner.pdb
 D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner\bin\EntityFramework.SqlServer.dll
 D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner\bin\EntityFramework.SqlServer.xml
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner\bin\System.Web.Cors.dll
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner\bin\System.Web.Http.Cors.dll
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner\bin\System.Web.Http.Cors.xml
