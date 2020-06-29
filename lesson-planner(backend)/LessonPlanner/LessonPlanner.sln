@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonPlanner", "LessonPlanner\LessonPlanner.csproj", "{160AA9F7-807D-4A7E-87FC-F601D9069642}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonPlanner DataLayer", "LessonPlanner DataLayer\LessonPlanner DataLayer.csproj", "{3975C044-8262-4AC0-988F-6DC60C43BD3F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{160AA9F7-807D-4A7E-87FC-F601D9069642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{160AA9F7-807D-4A7E-87FC-F601D9069642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{160AA9F7-807D-4A7E-87FC-F601D9069642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{160AA9F7-807D-4A7E-87FC-F601D9069642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3975C044-8262-4AC0-988F-6DC60C43BD3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3975C044-8262-4AC0-988F-6DC60C43BD3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3975C044-8262-4AC0-988F-6DC60C43BD3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3975C044-8262-4AC0-988F-6DC60C43BD3F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {687F9F37-7F86-41DB-86FD-A1E218179153}
+	EndGlobalSection
+EndGlobal

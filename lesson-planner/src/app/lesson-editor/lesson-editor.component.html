@@ -1,0 +1,11 @@
+<div *ngIf="lesson">
+  <div>
+    <label for="name">Name</label>
+    <input type="text" id="name" [(ngModel)]="lesson.name">
+  </div>
+  <div>
+    <label for="completed">Completed</label>
+    <input type="checkbox" id="completed" [(ngModel)]="lesson.completed">
+  </div>
+  <button (click)="applyChanges()">Apply</button>
+</div>

@@ -1,0 +1,14 @@
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\bin\Debug\LessonPlanner DataLayer.dll.config
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\bin\Debug\LessonPlanner DataLayer.dll
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\bin\Debug\LessonPlanner DataLayer.pdb
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\bin\Debug\EntityFramework.dll
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\bin\Debug\EntityFramework.SqlServer.dll
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\bin\Debug\EntityFramework.xml
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\bin\Debug\EntityFramework.SqlServer.xml
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\obj\Debug\LessonPlanner DataLayer.csprojAssemblyReference.cache
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\obj\Debug\LessonPlanner DataLayer.csproj.CoreCompileInputs.cache
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\obj\Debug\LessonPlanner DataLayer.csproj.CopyComplete
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\obj\Debug\LessonPlanner DataLayer.dll
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\obj\Debug\LessonPlanner DataLayer.pdb
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\obj\Debug\LessonPlanner_DataLayer.Migrations.LessonTable.resources
+D:\GIT\My_Sites_Repository\Angular\lesson-planner(backend)\LessonPlanner\LessonPlanner DataLayer\obj\Debug\LessonPlanner DataLayer.csproj.GenerateResource.cache
