@@ -1,0 +1,65 @@
+.wrapper {
+  background-color: #555;
+}
+
+.slick-slider {
+  width: 90%;
+  margin: auto;
+  //background: #717;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-btn {
+  height: 47px;
+  position: absolute;
+  width: 26px;
+  cursor: pointer;
+  top: 100px !important;
+  z-index: 100;
+}
+
+.prev-slide.slick-disabled,
+.next-slide.slick-disabled {
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.slick-arrow {
+  width: 75px;
+  height: 75px;
+  background-color: orange !important;
+}
+
+.slick-prev{
+  // background: url(../../assets/images/nav-icon.svg) no-repeat scroll 0 0;
+  background-color: #ff61e0 ;
+  width: 50px;
+  height: 50px;
+}
+.prev-slide {
+  // background: url(../../assets/images/nav-icon.svg) no-repeat scroll 0 0;
+  height: 100px;
+  width: 100px;
+  background-color: #0a459e;
+  left: -33px;
+}
+
+.next-slide {
+  // background: url(../../assets/images/nav-icon.svg) no-repeat scroll -24px 0px;
+  height: 100px;
+  width: 100px;
+  background-color: #0a459e;
+  right: -33px;
+}
+
+.prev-slide:hover {
+  background-position: 0px -53px;
+}
+
+.next-slide:hover {
+  background-position: -24px -53px;
+}

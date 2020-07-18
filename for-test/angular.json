@@ -50,9 +50,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/slick-carousel/slick/slick.scss"
+              //"node_modules/slick-carousel/slick/slick-theme.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/hammerjs/hammer.js",
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/slick-carousel/slick/slick.min.js"
+
+            ]
           },
           "configurations": {
             "production": {

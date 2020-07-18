@@ -1,1 +1,49 @@
-<p>slick-slider works!</p>
+<h1>{{'slick-slider' | uppercase}}</h1>
+
+<!--<div class="slides">-->
+<!--  <img src="https://picsum.photos/500?random=1">-->
+<!--  <img src="https://picsum.photos/500?random=2">-->
+<!--  <img src="https://picsum.photos/500?random=3">-->
+<!--  <img src="https://picsum.photos/500?random=4">-->
+<!--  <img src="https://picsum.photos/500?random=5">-->
+<!--  <img src="https://picsum.photos/500?random=6">-->
+
+<!--</div>-->
+<div class="wrapper">
+<!--  <ngx-slick-carousel-->
+<!--    class="carousel"-->
+<!--    #slickModal="slick-carousel"-->
+<!--    [config]="slideConfig"-->
+<!--    (init)="slickInit($event)"-->
+<!--    (breakpoint)="breakpoint($event)"-->
+<!--    (afterChange)="afterChange($event)"-->
+<!--    (beforeChange)="beforeChange($event)" >-->
+
+<!--    <div-->
+<!--      class="slide"-->
+<!--      ngxSlickItem-->
+<!--      *ngFor="let slide of slides" >-->
+
+<!--      <img src="https://picsum.photos/id/{{slide}}/300" alt="">-->
+<!--    </div>-->
+
+<!--  </ngx-slick-carousel>-->
+
+<!--  <br>-->
+<!--  <br>-->
+<!--  <button (click)="addSlide()">addSlide</button>-->
+<!--  <button (click)="removeSlide()">removeSlide</button>-->
+<!--  <button (click)="slickModal.slickGoTo(2)">slickGoTo 2</button>-->
+<!--  <button (click)="slickModal.unslick()">unslick</button>-->
+
+<!--  ======================================================= -->
+
+  <div class="carousel">
+    <div class="slide" *ngFor="let slide of slides">
+      <img src="https://picsum.photos/id/{{slide}}/300" alt="">
+    </div>
+  </div>
+</div>
+
+
+

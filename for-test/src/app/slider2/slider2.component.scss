@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swipe-box {
+  display: block;
+  margin: 0;
+  z-index: 100;
+}
+
+.img {
+  width: 300px;
+  object-fit: contain;
+  z-index: 10;
+  pointer-events: none
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}

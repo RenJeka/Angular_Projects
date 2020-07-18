@@ -1,1 +1,23 @@
-<p>slider2 works!</p>
+<div class="wrapper">
+  <!-- loop each avatar in our avatar list -->
+  <div class="swipe-box"
+       *ngFor="let avatar of avatars; let idx=index"
+       [@slider2Animation]="animationState"
+       (@slider2Animation.done)="resetAnimationState()"
+       (swipeleft)="swipe(idx, $event)"
+       (swiperight)="swipe(idx, $event)"
+       [class.visible]="avatar.visible"
+       [class.hidden]="!avatar.visible">
+    <div>
+      <img
+        [src]="avatar.image"
+        [alt]="avatar.name"
+        class="img"
+      >
+    </div>
+    <div>
+      <a class="header">{{avatar.name}}</a>
+    </div>
+  </div>
+</div>
+

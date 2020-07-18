@@ -1,1 +1,13 @@
-<p>hammer-card works!</p>
+<div class="wrapper">
+  <div
+    class="card"
+    [@cardAnimator]="animationState"
+    (@cardAnimator.done)="resetAnimationState()"
+    (swipeleft)="startAnimation('slideOutLeft', $event)"
+    (swiperight)="startAnimation('zoomOutRight', $event)"
+    (swipeup)="startAnimation('rotateOutUpRight', $event)"
+    (swipedown)="startAnimation('flipOutY', $event)"
+  >
+
+  </div>
+</div>
