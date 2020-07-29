@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  max-width: 1100px;
+  height: 100vh;
+  background-color: lightblue;
+  margin: 20px auto 0 ;
+}
+
+* {
+  font-size: 16px;
+}
+
+form {
+  width: 80%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.inp-type {
+  width: 20%;
+}
+.inp-word {
+  width: 50%;
+}
+.inp-search {
+  width: 20%;
+}
+
