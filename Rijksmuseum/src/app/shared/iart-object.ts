@@ -1,13 +1,8 @@
+import {IArtObjectImage} from "./iart-object-image";
+
 export interface IArtObject {
   hasImage: boolean;
-  headerImage: {
-    guid: string;
-    height: number;
-    offsetPercentageX: number;
-    offsetPercentageY: number;
-    url: string;
-    width: number;
-  }
+  headerImage: IArtObjectImage
   id: string;
   links: {
     self: string;
@@ -20,12 +15,5 @@ export interface IArtObject {
   productionPlaces: string[];
   showImage: boolean;
   title: string;
-  webImage: {
-    guid: string;
-    height: number;
-    offsetPercentageX: number;
-    offsetPercentageY: number;
-    url: string;
-    width: number;
-  }
+  webImage: IArtObjectImage
 }

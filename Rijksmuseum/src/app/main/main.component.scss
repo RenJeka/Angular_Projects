@@ -36,6 +36,17 @@ form {
 }
 
 .tiles-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 20px -#{$tileSideMargin} 0;
   color: $colorGrey;
+
 }
 
+.tile {
+  width: calc(100% / 12 * 2 - (#{$tileSideMargin} * 2));
+  height: 150px;
+  margin: $tileSideMargin;
+  background: #ccc;
+}

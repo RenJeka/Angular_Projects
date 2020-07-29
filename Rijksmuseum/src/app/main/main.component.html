@@ -5,7 +5,22 @@
     <input type="submit" class="input inp-search btn_orange" value='Search' >
   </form>
 
-  <div class="tiles-container">
-    <div *ngFor="let tiel of tiels"></div>
+  <div class="tiles-container" *ngIf="artCollection; else loadingTileContainer">
+    <div
+
+      *ngFor="let artObject of artObjects"
+      class="tile border-gray"
+    >
+      {{artObject.title}}
+    </div>
   </div>
+
+  <ng-template #loadingTileContainer>
+    <div class="tiles-container">
+      <div
+        *ngForWithNumbers="tilesPerPage"
+        class="tile border-gray"
+      ></div>
+    </div>
+  </ng-template>
 </section>

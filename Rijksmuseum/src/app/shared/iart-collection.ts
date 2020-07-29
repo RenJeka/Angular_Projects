@@ -3,6 +3,7 @@ import {IFacet} from "./ifacet";
 import {INamedFacet} from "./inamed-facet";
 
 export interface IArtCollection {
+
   artObjects: IArtObject[];
   count: number;
   countFacets: {

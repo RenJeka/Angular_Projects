@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from "rxjs";
+import {IArtCollection} from "../shared/iart-collection";
+import {DataService} from "../shared/data.service";
+import {IArtObject} from "../shared/iart-object";
 
 @Component({
   selector: 'app-main',
@@ -7,11 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  apiKey = "v6nas9kT";
+  artCollection: IArtCollection;
+  artObjects: IArtObject[];
 
-  constructor() { }
+  // pagination
+  tilesPerPage = 10;
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    // this.dataService.getCollection()
+    //   .subscribe((result) => {
+    //       this.artCollection = result;
+    //       this.artObjects = result.artObjects;
+    //   });
   }
 
   searchCollection() {
