@@ -20,11 +20,11 @@ export class MainComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    // this.dataService.getCollection()
-    //   .subscribe((result) => {
-    //       this.artCollection = result;
-    //       this.artObjects = result.artObjects;
-    //   });
+    this.dataService.getCollection()
+      .subscribe((result) => {
+          this.artCollection = result;
+          this.artObjects = result.artObjects;
+      });
   }
 
   searchCollection() {

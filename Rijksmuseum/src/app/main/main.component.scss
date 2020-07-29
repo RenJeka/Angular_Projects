@@ -41,12 +41,104 @@ form {
   justify-content: flex-start;
   margin: 20px -#{$tileSideMargin} 0;
   color: $colorGrey;
-
 }
 
 .tile {
+  //width: 150px;
   width: calc(100% / 12 * 2 - (#{$tileSideMargin} * 2));
   height: 150px;
   margin: $tileSideMargin;
-  background: #ccc;
+  background-position: center;
+  background-size: cover ;
+
+  &_pulse {
+    background: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-timing-function: linear ;
+    animation-iteration-count: infinite;
+  }
+
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.05);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(.975);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  form {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 $tileSideMargin;
+  }
+
+  .tiles-container {
+    margin: 20px 0 0;
+  }
+  .tile {
+    width: calc(100% / 12 * 3 - (#{$tileSideMargin} * 2));
+  }
+}
+
+@media screen and (max-width: 700px) {
+  form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .inp-type,
+  .inp-word,
+  .inp-search {
+    margin: 10px 0;
+  }
+
+  .inp-type,
+  .inp-word{
+    width: 100%;
+  }
+
+  .inp-search {
+    width: 50%;
+  }
+
+  .tiles-container {
+    margin: 0;
+  }
+
+  .tile {
+    width: calc(100% / 12 * 4 - (#{$tileSideMargin} * 2));
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .tile {
+    width: calc(100% / 12 * 6 - (#{$tileSideMargin} * 2));
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .tile {
+    width: calc(100% - (#{$tileSideMargin} * 2));
+  }
 }

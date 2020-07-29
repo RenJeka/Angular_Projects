@@ -10,8 +10,8 @@
 
       *ngFor="let artObject of artObjects"
       class="tile border-gray"
+      [ngStyle]="{'background-image': 'url(' + artObject.webImage.url + ')'}"
     >
-      {{artObject.title}}
     </div>
   </div>
 
@@ -19,8 +19,8 @@
     <div class="tiles-container">
       <div
         *ngForWithNumbers="tilesPerPage"
-        class="tile border-gray"
-      ></div>
+        class="tile tile_pulse border-gray"
+      > Loading ... </div>
     </div>
   </ng-template>
 </section>
