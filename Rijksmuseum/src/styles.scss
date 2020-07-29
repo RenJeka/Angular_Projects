@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-// Variables
-$colorGrey: #A9B2BD;
+@import "variables";
 
 // NORMILIZE CSS  START
 * {
@@ -81,12 +80,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 // NORMILIZE CSS  END
 
-.border-gray {
-  border: 2px solid #444444;
-}
+// Common Styles Start
 
-.color-gray {
-  color: #444444;
+.border-gray {
+  border: 2px solid $colorGrey;
 }
 
 .input {
@@ -96,13 +93,12 @@ h1, h2, h3, h4, h5, h6 {
   background: #fff;
 }
 
-// Common Styles Start
 .btn {
   &_orange {
     background: #ff6347;
   }
 }
-// Common Styles End
+//Common Styles End
 
 body {
   background: linear-gradient( #e1e1e1, transparent 1px), linear-gradient( 90deg, #e1e1e1, transparent 1px);

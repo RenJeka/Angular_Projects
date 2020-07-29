@@ -1,3 +1,5 @@
+@import "variables";
+
 :host {
   display: block;
   max-width: 1100px;
@@ -15,6 +17,12 @@ form {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
+}
+
+.inp-type,
+.inp-word,
+.inp-search {
+  color: $colorGrey;
 }
 
 .inp-type {
