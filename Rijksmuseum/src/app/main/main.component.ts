@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
+  apiKey = "v6nas9kT";
+
   constructor() { }
 
   ngOnInit(): void {
