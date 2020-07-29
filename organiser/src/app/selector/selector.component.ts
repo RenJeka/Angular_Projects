@@ -1,20 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {DateService} from "../shared/date.service";
 
 @Component({
   selector: 'app-selector',
-  template: `
-    <p>
-      selector works!
-    </p>
-  `,
-  styles: [
-  ]
+  templateUrl: "./selector.component.html",
+  styleUrls: ["./selector.component.scss"]
 })
-export class SelectorComponent implements OnInit {
+export class SelectorComponent  {
 
-  constructor() { }
+  constructor(public dateService: DateService) { }
 
-  ngOnInit(): void {
+  go(direction: number) {
+    this.dateService.changeMonth(direction)
   }
-
 }
