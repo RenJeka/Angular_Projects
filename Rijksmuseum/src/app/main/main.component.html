@@ -7,11 +7,13 @@
 
   <div class="tiles-container" *ngIf="artCollection; else loadingTileContainer">
     <div
-
       *ngFor="let artObject of artObjects"
       class="tile border-gray"
-      [ngStyle]="{'background-image': 'url(' + artObject.webImage.url + ')'}"
+      [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"
     >
+      <div class="popup-text">
+        {{artObject.longTitle}}
+      </div>
     </div>
   </div>
 

@@ -45,8 +45,10 @@ form {
 
 .tile {
   //width: 150px;
+  position: relative;
   width: calc(100% / 12 * 2 - (#{$tileSideMargin} * 2));
   height: 150px;
+  overflow: hidden;
   margin: $tileSideMargin;
   background-position: center;
   background-size: cover ;
@@ -61,8 +63,23 @@ form {
     animation-timing-function: linear ;
     animation-iteration-count: infinite;
   }
+  .popup-text {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(150px);
+    transform-origin: bottom;
+    color: $colorGrey;
+    background-color: #dddddd;
+    font-size: 14px;
+    padding: 5px 10px;
+    transition: 1s ease;
+  }
 
+  &:hover .popup-text{
+    transform: translateY(0);
+  }
 }
+
 
 @keyframes pulse {
   0% {
