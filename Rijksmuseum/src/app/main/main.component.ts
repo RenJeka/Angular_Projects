@@ -13,7 +13,7 @@ export class MainComponent implements OnInit {
 
   artCollection: IArtCollection;
   artObjects: IArtObject[];
-
+  isPopupOpen = false;
   // pagination
   tilesPerPage = 10;
 
@@ -31,4 +31,7 @@ export class MainComponent implements OnInit {
 
   }
 
+  closePopupHandler() {
+    this.isPopupOpen = false;
+  }
 }

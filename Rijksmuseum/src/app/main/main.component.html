@@ -10,6 +10,7 @@
       *ngFor="let artObject of artObjects"
       class="tile border-gray"
       [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"
+      (click)="isPopupOpen = !isPopupOpen"
     >
       <div class="popup-text">
         {{artObject.longTitle}}
@@ -27,9 +28,14 @@
   </ng-template>
 </section>
 
-<div class="modal-overlay">
+<div
+  *ngIf="isPopupOpen"
+  class="modal-overlay"
+>
   <app-popup
-
+    [ngClass]="isPopupOpen? 'active' : 'inactive'"
+    (btnCloseHandler)="closePopupHandler()"
+    [isVisible]="isPopupOpen"
   ></app-popup>
 </div>
 <!--<div class="modal-overlay" *ngIf="(isReportModalOpen)"></div>-->
