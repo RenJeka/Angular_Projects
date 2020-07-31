@@ -6,8 +6,9 @@ import {DetailsComponent} from "./details/details.component";
 
 
 const routes: Routes = [
-  {path:'', component: MainComponent},
-  {path:'popup', component: PopupComponent},
+  {path:'', component: MainComponent, pathMatch: 'full'},
+  {path:'main', component: MainComponent},
+  {path:'popup/:id', component: PopupComponent},
   {path:'detail', component: DetailsComponent}
 ];
 

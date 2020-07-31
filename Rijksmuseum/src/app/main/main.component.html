@@ -5,12 +5,18 @@
     <input type="submit" class="input inp-search btn_orange" value='Search' >
   </form>
 
-  <div class="tiles-container" *ngIf="artCollection; else loadingTileContainer">
-    <div
-      *ngFor="let artObject of artObjects"
+  <div class="tiles-container" *ngIf="dataService.artCollection; else loadingTileContainer">
+<!--    <div-->
+<!--      *ngFor="let artObject of artObjects"-->
+<!--      class="tile border-gray"-->
+<!--      [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"-->
+<!--      (click)="isPopupOpen = !isPopupOpen"-->
+<!--    >-->
+      <div
+      *ngFor="let artObject of dataService.artObjects"
       class="tile border-gray"
       [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"
-      (click)="isPopupOpen = !isPopupOpen"
+      [routerLink]="['/popup', artObject.id]"
     >
       <div class="popup-text">
         {{artObject.longTitle}}

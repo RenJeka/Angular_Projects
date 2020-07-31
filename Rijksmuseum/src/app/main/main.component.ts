@@ -17,13 +17,15 @@ export class MainComponent implements OnInit {
   // pagination
   tilesPerPage = 10;
 
-  constructor(private dataService: DataService) { }
+  constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
     this.dataService.getCollection()
       .subscribe((result) => {
-          this.artCollection = result;
-          this.artObjects = result.artObjects;
+        this.dataService.artCollection = result;
+        this.dataService.artObjects = result.artObjects;
+          // this.artCollection = result;
+          // this.artObjects = result.artObjects;
       });
   }
 
