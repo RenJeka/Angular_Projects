@@ -30,8 +30,9 @@ export class PopupComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.params.subscribe((params: Params) => {
+    this.route.params.subscribe((params: Params /*{id: string}*/) => {
       if (this.dataService.artCollection) {
+
         this.currentArtObject = this.dataService.getArtObjectById(params.id)
       } else {
         this.dataService.setUpDataService(this.dataService.getCollection())

@@ -16,7 +16,7 @@
       *ngFor="let artObject of dataService.artObjects"
       class="tile border-gray"
       [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"
-      [routerLink]="['/popup', artObject.id]"
+      [routerLink]="['/main', 'popup',  artObject.id]"
     >
       <div class="popup-text">
         {{artObject.longTitle}}
@@ -38,10 +38,12 @@
   *ngIf="isPopupOpen"
   class="modal-overlay"
 >
-  <app-popup
-    [ngClass]="isPopupOpen? 'active' : 'inactive'"
-    (btnCloseHandler)="closePopupHandler()"
-    [isVisible]="isPopupOpen"
-  ></app-popup>
+<!--  <app-popup-->
+<!--    [ngClass]="isPopupOpen? 'active' : 'inactive'"-->
+<!--    (btnCloseHandler)="closePopupHandler()"-->
+<!--    [isVisible]="isPopupOpen"-->
+<!--  ></app-popup>-->
 </div>
+
+<router-outlet></router-outlet>
 <!--<div class="modal-overlay" *ngIf="(isReportModalOpen)"></div>-->
