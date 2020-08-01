@@ -1,1 +1,50 @@
-<p>details works!</p>
+<div class="container">
+  <div
+    class="title"
+    *ngIf="currentArtObject; else loadingTitle"
+  >{{currentArtObject.title}}</div>
+
+  <div
+    *ngIf="currentArtObject; else loadingInfo"
+    class="info-block"
+  >
+    <div class="image-block">
+      <div
+        class="image-block__image"
+        [ngStyle]="{ backgroundImage: 'url(' + currentArtObject.webImage.url + ')'}"
+      >
+      </div>
+      <!--    <img class="image-block" src="{{currentArtObject.webImage.url}}" alt="">-->
+      <button class="input btn btn_orange favorite-button">⭐ Add to fav list</button>
+    </div>
+    <div class="description">{{currentArtObject.longTitle}}</div>
+  </div>
+
+  <div class="control-block">
+    <button
+      class="input btn"
+      [routerLink]="'main'"
+    >Close
+    </button>
+  </div>
+</div>
+<!-- Loading templates -->
+<ng-template #loadingTitle>
+  <div class="title">
+    <div class="spinner"></div>
+  </div>
+</ng-template>
+
+<ng-template #loadingInfo>
+  <div class="info-block">
+    <div class="image-block">
+      <div class="image-block__image">
+        <div class="spinner"></div>
+      </div>
+      <button class="input btn btn_orange favorite-button">⭐ Add to fav list</button>
+    </div>
+    <div class="description">
+      <div class="spinner"></div>
+    </div>
+  </div>
+</ng-template>
