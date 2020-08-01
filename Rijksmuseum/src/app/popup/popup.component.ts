@@ -1,11 +1,8 @@
 import {
   Component,
-  EventEmitter,
-  Input,
   OnInit,
-  Output
 } from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {DataService} from "../shared/data.service";
 import {IArtObject} from "../shared/iart-object";
 
@@ -16,37 +13,25 @@ import {IArtObject} from "../shared/iart-object";
 })
 export class PopupComponent implements OnInit {
 
-  @Input()
-  isVisible = false;
-  @Output()
-  btnCloseHandler: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   currentArtObject: IArtObject;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     public dataService: DataService
   ) { }
 
   ngOnInit(): void {
 
-    this.route.params.subscribe((params: Params /*{id: string}*/) => {
-      if (this.dataService.artCollection) {
+    this.dataService.setupOnInitComponents(this.route)
+      .then(response => {
+        this.currentArtObject = response;
+      })
 
-        this.currentArtObject = this.dataService.getArtObjectById(params.id)
-      } else {
-        this.dataService.setUpDataService(this.dataService.getCollection())
-          .then(() => {
-            this.currentArtObject = this.dataService.getArtObjectById(params.id)
-          })
-      }
-
-    })
   }
 
-  closePopup(): void {
-    this.isVisible = !this.isVisible;
-    this.btnCloseHandler.emit(true);
+  goToDetail() {
+    console.log("Navigation...");
+    this.router.navigate(['/main', 'detail',  this.currentArtObject.id]);
   }
-
 }

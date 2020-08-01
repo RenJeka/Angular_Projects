@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IArtCollection} from "./iart-collection";
 import {IArtObject} from "./iart-object";
+import {ActivatedRoute, Params} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,28 @@ export class DataService {
     } else {
       return null
     }
+  }
+
+  /**
+   * Метод настраивает инициализацию компонента (передает в компонент нужный Арт-объект)
+   * @description Задача меотда — дать более простой интерфейс для инициализации компонента и
+   * избавится от повторяющегося кода.
+   * @param activatedRoute ссылка на инжектированный "activatedRoute" в компоненте
+   */
+  setupOnInitComponents(activatedRoute: ActivatedRoute):Promise<IArtObject> {
+
+    return new Promise<IArtObject>((resolve) => {
+      activatedRoute.params.subscribe((params: Params) => {
+        // Проверка нужна в случае, если пользователь скопировал и вставил адрес сразу в URL, или перезагрузил страницу
+        if (this.artCollection) {
+          resolve(this.getArtObjectById(params.id));
+        } else {
+          this.setUpDataService(this.getCollection())
+            .then(() => {
+              resolve(this.getArtObjectById(params.id));
+            })
+        }
+      })
+    })
   }
 }

@@ -6,11 +6,12 @@ import {DetailsComponent} from "./details/details.component";
 
 
 const routes: Routes = [
-  {path:'', component: MainComponent, pathMatch: 'full'},
+  {path:'', redirectTo: "main", pathMatch: 'full'},
   {path:'main', component: MainComponent, children: [
       {path:'popup/:id', component: PopupComponent},
+      {path:'detail/:id', component: DetailsComponent}
     ]},
-  {path:'detail', component: DetailsComponent}
+
 ];
 
 @NgModule({
