@@ -23,8 +23,7 @@ export class ImageScaleDirective {
     private elRef: ElementRef,
     private renderer: Renderer2,
   ) {
-
-
+    this.renderer.setStyle(this.elRef.nativeElement, "cursor", "zoom-in");
     this.renderer.addClass(this.bigImageOverlay,"overlay-big-image");
     this.renderer.addClass(this.bigImage,"bigImage");
     this.renderer.appendChild(this.bigImageContainer, this.bigImageOverlay);
