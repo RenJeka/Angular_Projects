@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IArtObject} from "../shared/iart-object";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../shared/data.service";
+import {IArtObjectDetails} from "../shared/iart-object-details";
 
 @Component({
   selector: 'app-details',
@@ -11,6 +12,7 @@ import {DataService} from "../shared/data.service";
 export class DetailsComponent implements OnInit {
 
   currentArtObject: IArtObject;
+  artObjectDetails: IArtObjectDetails;
 
   constructor(
     private router: Router,
@@ -20,9 +22,16 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.setupOnInitComponents(this.route)
-      .then(response => {
-        this.currentArtObject = response;
-      })
+      .then(responseArtObject => {
+        this.currentArtObject = responseArtObject;
+
+        // Запрашиваем детальную информацию об объекте искусства
+        this.dataService.getArtObjectDetail(this.currentArtObject.objectNumber)
+          .subscribe((responseArtObjectDetails) => {
+            this.artObjectDetails = responseArtObjectDetails;
+            console.log("artObjectDetails: ", this.artObjectDetails);
+          })
+      });
   }
 
 }

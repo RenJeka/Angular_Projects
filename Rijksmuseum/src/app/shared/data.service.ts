@@ -23,9 +23,18 @@ export class DataService {
    */
   getCollection(): Observable<IArtCollection> {
     let observableArtCollection: Observable<IArtCollection>;
-    observableArtCollection = this.http.get<IArtCollection>(`https://www.rijksmuseum.nl/api/nl/collection?key=${this.apiKey}`)
+    observableArtCollection = this.http.get<IArtCollection>(`https://www.rijksmuseum.nl/api/en/collection?key=${this.apiKey}`)
     this.setUpDataService(observableArtCollection);
     return observableArtCollection
+  }
+
+  /**
+   * Метод получает дополнительную информацию о объекте искусства
+   * @param objectNumber Номер объекта, по которому нужно найти доп. информацию
+   * @see https://data.rijksmuseum.nl/object-metadata/api/#collection-details-api
+   */
+  getArtObjectDetail(objectNumber: string): Observable<IArtObject> {
+    return this.http.get<IArtObject>(`https://www.rijksmuseum.nl/api/en/collection/${objectNumber}?key=${this.apiKey}`)
   }
 
   /**
