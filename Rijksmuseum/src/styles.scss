@@ -114,12 +114,35 @@ h1, h2, h3, h4, h5, h6 {
   backdrop-filter: blur(10px);
 }
 
+.overlay-big-image {
+  @extend .modal-overlay;
+
+  //width: 100%;
+
+}
+
 .active {
   display: block;
 }
 
 .inactive {
   display: none;
+}
+
+.bigImage {
+  width: auto;
+  height: 100vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: zoom-out;
+}
+
+.not-found:before {
+  content: "Image not found";
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
 }
 
 //Common Styles End

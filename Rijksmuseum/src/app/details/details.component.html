@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="logo">Additional details</div>
   <div
     class="title"
     *ngIf="currentArtObject; else loadingTitle"
@@ -8,14 +9,11 @@
     *ngIf="currentArtObject; else loadingInfo"
     class="info-block"
   >
-    <div class="image-block">
-      <div
-        class="image-block__image"
-        [ngStyle]="{ backgroundImage: 'url(' + currentArtObject.webImage.url + ')'}"
-      >
-      </div>
-      <!--    <img class="image-block" src="{{currentArtObject.webImage.url}}" alt="">-->
-      <button class="input btn btn_orange favorite-button">⭐ Add to fav list</button>
+    <div
+      class="image"
+      [ngStyle]="{ backgroundImage: 'url(' + currentArtObject.webImage.url + ')'}"
+      imageScale
+    >
     </div>
     <div class="description">{{currentArtObject.longTitle}}</div>
   </div>
