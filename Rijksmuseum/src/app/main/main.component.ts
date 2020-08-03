@@ -15,18 +15,17 @@ export class MainComponent implements OnInit {
   // artObjects: IArtObject[];
   isPopupOpen = false;
   // pagination
-  tilesPerPage = 10;
 
   constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
-    this.dataService.getCollection()
-      .subscribe((result) => {
-        this.dataService.artCollection = result;
-        this.dataService.artObjects = result.artObjects;
-          // this.artCollection = result;
-          // this.artObjects = result.artObjects;
-      });
+    // this.dataService.getCollection()
+    //   .subscribe((result) => {
+    //     this.dataService.artCollection = result;
+    //     this.dataService.artObjects = result.artObjects;
+    //       // this.artCollection = result;
+    //       // this.artObjects = result.artObjects;
+    //   });
   }
 
   searchCollection() {

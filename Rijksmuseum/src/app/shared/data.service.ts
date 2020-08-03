@@ -12,19 +12,28 @@ import {IArtObjectDetails} from "./iart-object-details";
 export class DataService {
 
   private apiKey = "v6nas9kT";
+  objectsOnPage = 30;
+  private urlQueryParams : {[propName: string]: string} = {
+    key: "v6nas9kT",
+    ps: "30",
+  };
 
   artCollection: IArtCollection;
   artObjects: IArtObject[];
 
   constructor(private http: HttpClient) {
+    this.getCollection();
   }
 
   /**
    * Метод получает коллекцию с сервера
    */
   getCollection(): Observable<IArtCollection> {
+    let queryParams = Object.entries(this.urlQueryParams).map(arrPair => arrPair.join("=")).join("&");
+    console.log(queryParams);
+
     let observableArtCollection: Observable<IArtCollection>;
-    observableArtCollection = this.http.get<IArtCollection>(`https://www.rijksmuseum.nl/api/en/collection?key=${this.apiKey}`)
+    observableArtCollection = this.http.get<IArtCollection>(`https://www.rijksmuseum.nl/api/en/collection?${queryParams}`);
     this.setUpDataService(observableArtCollection);
     return observableArtCollection
   }
@@ -52,7 +61,7 @@ export class DataService {
     })
   }
 
-  getArtObjectById(id: string): IArtObject {
+  public getArtObjectById(id: string): IArtObject {
     if (this.artCollection) {
       return this.artCollection.artObjects.find(predicate => predicate.id === id)
     } else {
@@ -66,7 +75,7 @@ export class DataService {
    * избавится от повторяющегося кода.
    * @param activatedRoute ссылка на инжектированный "activatedRoute" в компоненте
    */
-  setupOnInitComponents(activatedRoute: ActivatedRoute):Promise<IArtObject> {
+  public setupOnInitComponents(activatedRoute: ActivatedRoute):Promise<IArtObject> {
 
     return new Promise<IArtObject>((resolve) => {
       activatedRoute.params.subscribe((params: Params) => {

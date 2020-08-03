@@ -27,7 +27,7 @@
   <ng-template #loadingTileContainer>
     <div class="tiles-container">
       <div
-        *ngForWithNumbers="tilesPerPage"
+        *ngForWithNumbers="dataService.objectsOnPage"
         class="tile tile_pulse border-gray"
       >
         <div class="spinner spinner_no-shift"></div>
