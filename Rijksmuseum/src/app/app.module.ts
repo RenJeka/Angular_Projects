@@ -9,6 +9,7 @@ import { DetailsComponent } from './details/details.component';
 import {HttpClientModule} from "@angular/common/http";
 import { NgForWithNumbersDirective } from './shared/ng-for-with-numbers.directive';
 import { ImageScaleDirective } from './shared/image-scale.directive';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ImageScaleDirective } from './shared/image-scale.directive';
     DetailsComponent,
     NgForWithNumbersDirective,
     ImageScaleDirective,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,

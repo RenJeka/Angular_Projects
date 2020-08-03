@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {MainComponent} from "./main/main.component";
 import {PopupComponent} from "./popup/popup.component";
 import {DetailsComponent} from "./details/details.component";
+import {ErrorPageComponent} from "./error-page/error-page.component";
 
 
 const routes: Routes = [
@@ -11,6 +12,8 @@ const routes: Routes = [
       {path:'popup/:id', component: PopupComponent},
       {path:'detail/:id', component: DetailsComponent}
     ]},
+  {path: 'error', component: ErrorPageComponent},
+  {path: '**',redirectTo: 'error'},
 
 ];
 
