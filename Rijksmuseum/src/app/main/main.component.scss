@@ -3,7 +3,7 @@
 :host  {
   display: block;
   max-width: $bodyWidthLimit;
-  height: 100vh;
+  min-height: 100vh;
   background-color: lightblue;
   margin: 20px auto 0 ;
 }

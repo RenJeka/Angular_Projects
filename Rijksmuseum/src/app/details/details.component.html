@@ -8,6 +8,7 @@
   <div class="info-block">
     <div
       class="image"
+      [ngClass]="{'not-image': !currentArtObject.webImage.url}"
       *ngIf="currentArtObject; else loadingImage"
       [ngStyle]="{ backgroundImage: 'url(' + currentArtObject.webImage.url + ')'}"
       imageScale

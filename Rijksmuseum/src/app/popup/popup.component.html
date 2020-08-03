@@ -9,8 +9,9 @@
   >
     <div class="image-block">
       <div
+        *ngIf="currentArtObject.webImage; else notImage"
         class="image-block__image"
-        [ngStyle]="{ backgroundImage: 'url(' + currentArtObject.webImage.url + ')'}"
+        [ngStyle]="{ 'background-image': 'url(' + currentArtObject.webImage.url + ')'}"
         imageScale
       >
       </div>
@@ -54,5 +55,13 @@
     <div class="description">
       <div class="spinner"></div>
     </div>
+  </div>
+</ng-template>
+
+<ng-template #notImage>
+  <div
+    *ngIf="currentArtObject.webImage; else notImage"
+    class="image-block__image not-image"
+  >
   </div>
 </ng-template>

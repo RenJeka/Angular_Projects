@@ -26,6 +26,8 @@ export class PopupComponent implements OnInit {
     this.dataService.setupOnInitComponents(this.route)
       .then(response => {
         this.currentArtObject = response;
+        console.log("this.currentArtObject: ", this.currentArtObject);
+
       })
 
   }

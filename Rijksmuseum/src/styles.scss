@@ -138,11 +138,16 @@ h1, h2, h3, h4, h5, h6 {
   cursor: zoom-out;
 }
 
-.not-found:before {
-  content: "Image not found";
-  font-size: 16px;
-  font-weight: bold;
+.not-image:after {
+  display: block;
+  position: relative;
   text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "Not Image =(";
+  font-size: 20px;
+  color: brown;
 }
 
 //Common Styles End

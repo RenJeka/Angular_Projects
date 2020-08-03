@@ -15,6 +15,7 @@
       <div
       *ngFor="let artObject of dataService.artObjects"
       class="tile border-gray"
+      [ngClass]="{'not-image': !artObject.headerImage.url}"
       [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"
       [routerLink]="['/main', 'popup',  artObject.id]"
     >
