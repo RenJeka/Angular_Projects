@@ -5,6 +5,7 @@ import {IArtCollection} from "./iart-collection";
 import {IArtObject} from "./iart-object";
 import {ActivatedRoute, Params} from "@angular/router";
 import {IArtObjectDetails} from "./iart-object-details";
+import {PaginationService} from "./pagination.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +14,26 @@ export class DataService {
 
   private apiKey = "v6nas9kT";
   objectsOnPage = 30;
-  private urlQueryParams : {[propName: string]: string} = {
+  private urlQueryParams = {
     key: "v6nas9kT",
-    ps: "30",
+    p: this.paginationService.paginatorSettings.currentPage.toString(),
+    ps: this.paginationService.paginatorSettings.currentResultsPerPage.toString(),
   };
 
   artCollection: IArtCollection;
   artObjects: IArtObject[];
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private paginationService: PaginationService,
+  ) {
     this.getCollection();
+    this.paginationService.paginatorStream$
+      .subscribe((paginationSettings) => {
+          this.urlQueryParams.p = paginationSettings.currentPage.toString();
+          this.urlQueryParams.ps = paginationSettings.currentResultsPerPage.toString();
+          this.getCollection();
+      })
   }
 
   /**
@@ -30,8 +41,6 @@ export class DataService {
    */
   getCollection(): Observable<IArtCollection> {
     let queryParams = Object.entries(this.urlQueryParams).map(arrPair => arrPair.join("=")).join("&");
-    console.log(queryParams);
-
     let observableArtCollection: Observable<IArtCollection>;
     observableArtCollection = this.http.get<IArtCollection>(`https://www.rijksmuseum.nl/api/en/collection?${queryParams}`);
     this.setUpDataService(observableArtCollection);
@@ -56,6 +65,8 @@ export class DataService {
       observable.subscribe((responseArtCollection) => {
         this.artCollection = responseArtCollection;
         this.artObjects = responseArtCollection.artObjects;
+        console.log(responseArtCollection);
+
         resolve(responseArtCollection)
       })
     })

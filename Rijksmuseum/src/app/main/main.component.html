@@ -22,6 +22,22 @@
         {{artObject.longTitle}}
       </div>
     </div>
+
+    <div class="pagination">
+      <div class="pagination-control">
+        <div class="pagination-control_left"></div>
+        <div class="paging"></div>
+        <div class="pagination-control_right"></div>
+      </div>
+      <div class="results-per-page">
+        <ul>
+          <li
+            *ngFor="let results of paginationService.paginatorSettings.allowedResultsPerPage"
+            (click)="paginationService.changeResultsPerPage(+results)"
+          >{{results}}</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <ng-template #loadingTileContainer>
@@ -36,16 +52,16 @@
   </ng-template>
 </section>
 
-<div
-  *ngIf="isPopupOpen"
-  class="modal-overlay"
->
-<!--  <app-popup-->
-<!--    [ngClass]="isPopupOpen? 'active' : 'inactive'"-->
-<!--    (btnCloseHandler)="closePopupHandler()"-->
-<!--    [isVisible]="isPopupOpen"-->
-<!--  ></app-popup>-->
-</div>
+<!--<div-->
+<!--  *ngIf="isPopupOpen"-->
+<!--  class="modal-overlay"-->
+<!--&gt;-->
+<!--&lt;!&ndash;  <app-popup&ndash;&gt;-->
+<!--&lt;!&ndash;    [ngClass]="isPopupOpen? 'active' : 'inactive'"&ndash;&gt;-->
+<!--&lt;!&ndash;    (btnCloseHandler)="closePopupHandler()"&ndash;&gt;-->
+<!--&lt;!&ndash;    [isVisible]="isPopupOpen"&ndash;&gt;-->
+<!--&lt;!&ndash;  ></app-popup>&ndash;&gt;-->
+<!--</div>-->
 
 <router-outlet></router-outlet>
 <!--<div class="modal-overlay" *ngIf="(isReportModalOpen)"></div>-->

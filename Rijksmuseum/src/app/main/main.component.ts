@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs";
-import {IArtCollection} from "../shared/iart-collection";
+
 import {DataService} from "../shared/data.service";
-import {IArtObject} from "../shared/iart-object";
+import {PaginationService} from "../shared/pagination.service";
+
+
 
 @Component({
   selector: 'app-main',
@@ -11,12 +12,13 @@ import {IArtObject} from "../shared/iart-object";
 })
 export class MainComponent implements OnInit {
 
-  // artCollection: IArtCollection;
-  // artObjects: IArtObject[];
-  isPopupOpen = false;
-  // pagination
 
-  constructor(public dataService: DataService) { }
+
+
+  constructor(
+    public dataService: DataService,
+    public paginationService: PaginationService
+  ) { }
 
   ngOnInit(): void {
     // this.dataService.getCollection()
@@ -26,13 +28,12 @@ export class MainComponent implements OnInit {
     //       // this.artCollection = result;
     //       // this.artObjects = result.artObjects;
     //   });
+
   }
 
   searchCollection() {
 
   }
 
-  closePopupHandler() {
-    this.isPopupOpen = false;
-  }
+
 }
