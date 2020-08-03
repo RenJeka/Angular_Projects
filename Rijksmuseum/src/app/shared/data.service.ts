@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {IArtCollection} from "./iart-collection";
 import {IArtObject} from "./iart-object";
 import {ActivatedRoute, Params} from "@angular/router";
+import {IArtObjectDetails} from "./iart-object-details";
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,8 @@ export class DataService {
    * @param objectNumber Номер объекта, по которому нужно найти доп. информацию
    * @see https://data.rijksmuseum.nl/object-metadata/api/#collection-details-api
    */
-  getArtObjectDetail(objectNumber: string): Observable<IArtObject> {
-    return this.http.get<IArtObject>(`https://www.rijksmuseum.nl/api/en/collection/${objectNumber}?key=${this.apiKey}`)
+  getArtObjectDetail(objectNumber: string): Observable<IArtObjectDetails> {
+    return this.http.get<IArtObjectDetails>(`https://www.rijksmuseum.nl/api/en/collection/${objectNumber}?key=${this.apiKey}`)
   }
 
   /**

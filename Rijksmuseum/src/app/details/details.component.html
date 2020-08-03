@@ -5,17 +5,56 @@
     *ngIf="currentArtObject; else loadingTitle"
   >{{currentArtObject.title}}</div>
 
-  <div
-    *ngIf="currentArtObject; else loadingInfo"
-    class="info-block"
-  >
+  <div class="info-block">
     <div
       class="image"
+      *ngIf="currentArtObject; else loadingImage"
       [ngStyle]="{ backgroundImage: 'url(' + currentArtObject.webImage.url + ')'}"
       imageScale
-    >
+    ></div>
+    <div class="details" *ngIf="artObjectDetails; else loadingDetails">
+      <div class="details__item">
+        <h5 class="details__title">Long Title</h5>
+        <div class="details__description">{{currentArtObject.longTitle}}</div>
+      </div>
+      <div class="details__item">
+        <h5 class="details__title">scLabelLine</h5>
+        <div class="details__description">{{artObjectDetails.artObject.scLabelLine}}</div>
+      </div>
+      <div class="details__item">
+        <h5 class="details__title">Date</h5>
+        <div class="details__description">{{artObjectDetails.artObject.dating.presentingDate}}</div>
+      </div>
+      <div class="details__item">
+        <h5 class="details__title">dimensions</h5>
+        <div class="details__description">{{artObjectDetails.artObject.subTitle}}</div>
+      </div>
+      <div class="details__item">
+        <h5 class="details__title">Description</h5>
+        <div class="details__description">{{artObjectDetails.artObject.description}}</div>
+      </div>
+      <div class="details__item">
+        <h5 class="details__title">Materials</h5>
+        <div class="details__description">{{artObjectDetails.artObject.materials.join(", ") | titlecase}}</div>
+      </div>
+      <div class="details__item">
+        <h5 class="details__title">Plaque Description</h5>
+        <div class="details__description">{{artObjectDetails.artObject.plaqueDescriptionEnglish}}</div>
+      </div>
+
+      <div class="details__item">
+        <h5 class="details__title">Cathegory</h5>
+        <div
+          class="details__description details_link">
+          <ul>
+            <li
+              *ngFor="let categoryName of artObjectDetails.artObject.classification.iconClassDescription"
+            >{{categoryName}}</li>
+          </ul>
+        </div>
+      </div>
+
     </div>
-    <div class="description">{{currentArtObject.longTitle}}</div>
   </div>
 
   <div class="control-block">
@@ -33,16 +72,62 @@
   </div>
 </ng-template>
 
-<ng-template #loadingInfo>
-  <div class="info-block">
-    <div class="image-block">
-      <div class="image-block__image">
+<ng-template #loadingImage>
+  <div class="image">
+    <div class="spinner"></div>
+  </div>
+</ng-template>
+
+<ng-template #loadingDetails>
+  <div class="details">
+    <div class="details__item">
+      <h5 class="details__title">Long Title</h5>
+      <div class="details__description">
         <div class="spinner"></div>
       </div>
-      <button class="input btn btn_orange favorite-button">⭐ Add to fav list</button>
     </div>
-    <div class="description">
-      <div class="spinner"></div>
+    <div class="details__item">
+      <h5 class="details__title">scLabelLine</h5>
+      <div class="details__description">
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <div class="details__item">
+      <h5 class="details__title">Date</h5>
+      <div class="details__description">
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <div class="details__item">
+      <h5 class="details__title">dimensions</h5>
+      <div class="details__description">
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <div class="details__item">
+      <h5 class="details__title">Description</h5>
+      <div class="details__description">
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <div class="details__item">
+      <h5 class="details__title">Materials</h5>
+      <div class="details__description">
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <div class="details__item">
+      <h5 class="details__title">Plaque Description</h5>
+      <div class="details__description">
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <div class="details__item">
+      <h5 class="details__title">Cathegory</h5>
+      <div class="details__description">
+       <div class="spinner"></div>
+      </div>
     </div>
   </div>
 </ng-template>

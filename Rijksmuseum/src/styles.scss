@@ -223,5 +223,11 @@ body {
   background-repeat: no-repeat;
   background-image: url("assets/spiner.svg");
 
+  &_no-shift {
+    left: 0;
+    transform: none;
+  }
 }
+
+
 // Spinner End

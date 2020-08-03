@@ -11,8 +11,8 @@ import {IArtObject} from "../shared/iart-object";
 })
 export class MainComponent implements OnInit {
 
-  artCollection: IArtCollection;
-  artObjects: IArtObject[];
+  // artCollection: IArtCollection;
+  // artObjects: IArtObject[];
   isPopupOpen = false;
   // pagination
   tilesPerPage = 10;

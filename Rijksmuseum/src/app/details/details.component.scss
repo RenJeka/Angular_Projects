@@ -23,7 +23,7 @@
   max-width: $bodyWidthLimit;
   width: $bodyWidthLimit;
   height: 100vh;
-  // overflow: auto;
+  overflow: auto;
   background: #fff;
   padding: 15px 30px;
   //border: 2px solid red;
@@ -64,15 +64,50 @@ button {
 .image {
   display: block;
   width: 100%;
-  height: 500px;
+  min-height: 500px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: top center;
   //background-color: #c1e2b3;
 }
 
-@media screen and (max-height: 550px) {
-  .image {
-    height: 500vh;
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 20px -#{$tileSideMargin} 0;
+  padding: 25px;
+
+  &__item {
+    width: calc(100% / 12 * 6 - (#{$tileSideMargin} * 2));
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: bold;
+    &:after {
+      content: " :";
+    }
+  }
+
+  &__description {
+    padding: 15px 20px;
+  }
+
+  &_link {
+    color: #11669e;
+    cursor: pointer;
+    text-decoration: underline;
+
+    li {
+      list-style-type: disc;
+      line-height: 17px;
+    }
   }
 }
+//
+//@media screen and (max-height: 550px) {
+//  .image {
+//    height: 100vh;
+//  }
+//}

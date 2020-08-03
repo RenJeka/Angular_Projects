@@ -28,8 +28,8 @@ export class DetailsComponent implements OnInit {
         // Запрашиваем детальную информацию об объекте искусства
         this.dataService.getArtObjectDetail(this.currentArtObject.objectNumber)
           .subscribe((responseArtObjectDetails) => {
+            console.log("responseArtObjectDetails: ", responseArtObjectDetails);
             this.artObjectDetails = responseArtObjectDetails;
-            console.log("artObjectDetails: ", this.artObjectDetails);
           })
       });
   }
