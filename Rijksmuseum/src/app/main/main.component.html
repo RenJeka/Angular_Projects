@@ -5,7 +5,7 @@
     <input type="submit" class="input inp-search btn_orange" value='Search' >
   </form>
 
-  <div class="tiles-container" *ngIf="dataService.artCollection; else loadingTileContainer">
+  <div class="tiles-container" *ngIf="!dataService.isLoading; else loadingTileContainer">
 <!--    <div-->
 <!--      *ngFor="let artObject of artObjects"-->
 <!--      class="tile border-gray"-->
@@ -23,27 +23,68 @@
       </div>
     </div>
 
-    <div class="pagination">
-      <div class="pagination-control">
-        <div class="pagination-control_left"></div>
-        <div class="paging"></div>
-        <div class="pagination-control_right"></div>
+
+  </div>
+  <div class="pagination">
+    <div class="pagination-control">
+      <div class="pagination-control pagination-control_left">
+        <div
+          class="btn pagination-control__start"
+          (click)="paginationService.goToStart()"
+        >
+          <img src="assets/arrow-start.svg" alt="<<<">
+        </div>
+        <div
+          class="btn pagination-control__prev"
+          (click)="paginationService.goPrev()"
+        >
+          <img src="assets/arrow-next.svg" alt="<—">
+        </div>
       </div>
-      <div class="results-per-page">
+      <div
+        class="paging pagination__numbers"
+      >
         <ul>
           <li
-            *ngFor="let results of paginationService.paginatorSettings.allowedResultsPerPage"
-            (click)="paginationService.changeResultsPerPage(+results)"
-          >{{results}}</li>
+            [ngClass]="{
+            'pagination__numbers_active': page === paginationService.paginatorSettings.currentPage
+            }"
+            *ngFor="let page of paginationService.paginatorSettings.paging"
+            (click)="paginationService.changePage(+page)"
+          >{{page}}</li>
         </ul>
       </div>
+      <div class="pagination-control pagination-control_right">
+        <div
+          class="btn pagination-control__next"
+          (click)="paginationService.goNext()"
+        >
+          <img src="assets/arrow-next.svg" alt="—>">
+        </div>
+        <div
+          class="btn pagination-control__finish"
+          (click)="paginationService.goToFinish()"
+        >
+          <img src="assets/arrow-start.svg" alt=">>>">
+        </div>
+      </div>
+    </div>
+    <div class="results-per-page pagination__numbers">
+      <ul>
+        <li
+          [ngClass]="{
+            'pagination__numbers_active': +numOfPages === paginationService.paginatorSettings.objectPerPage
+            }"
+          *ngFor="let numOfPages of paginationService.paginatorSettings.allowedResultsPerPage"
+          (click)="paginationService.changeResultsPerPage(+numOfPages)"
+        >{{numOfPages}}</li>
+      </ul>
     </div>
   </div>
-
   <ng-template #loadingTileContainer>
     <div class="tiles-container">
       <div
-        *ngForWithNumbers="dataService.objectsOnPage"
+        *ngForWithNumbers="paginationService.paginatorSettings.objectPerPage"
         class="tile tile_pulse border-gray"
       >
         <div class="spinner spinner_no-shift"></div>

@@ -86,19 +86,6 @@ form {
   }
 }
 
-.results-per-page {
-  ul li{
-    display: inline-block;
-    color: green;
-    cursor: pointer;
-    &:after {
-      content: "\00a0|\00a0";
-    }
-    &:last-child:after {
-      content: "";
-    }
-  }
-}
 
 @keyframes pulse {
   0% {

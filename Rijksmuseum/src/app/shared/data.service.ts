@@ -17,11 +17,12 @@ export class DataService {
   private urlQueryParams = {
     key: "v6nas9kT",
     p: this.paginationService.paginatorSettings.currentPage.toString(),
-    ps: this.paginationService.paginatorSettings.currentResultsPerPage.toString(),
+    ps: this.paginationService.paginatorSettings.objectPerPage.toString(),
   };
 
   artCollection: IArtCollection;
   artObjects: IArtObject[];
+  isLoading = true;
 
   constructor(
     private http: HttpClient,
@@ -31,7 +32,7 @@ export class DataService {
     this.paginationService.paginatorStream$
       .subscribe((paginationSettings) => {
           this.urlQueryParams.p = paginationSettings.currentPage.toString();
-          this.urlQueryParams.ps = paginationSettings.currentResultsPerPage.toString();
+          this.urlQueryParams.ps = paginationSettings.objectPerPage.toString();
           this.getCollection();
       })
   }
@@ -40,6 +41,7 @@ export class DataService {
    * Метод получает коллекцию с сервера
    */
   getCollection(): Observable<IArtCollection> {
+    this.isLoading = true;
     let queryParams = Object.entries(this.urlQueryParams).map(arrPair => arrPair.join("=")).join("&");
     let observableArtCollection: Observable<IArtCollection>;
     observableArtCollection = this.http.get<IArtCollection>(`https://www.rijksmuseum.nl/api/en/collection?${queryParams}`);
@@ -66,7 +68,7 @@ export class DataService {
         this.artCollection = responseArtCollection;
         this.artObjects = responseArtCollection.artObjects;
         console.log(responseArtCollection);
-
+        this.isLoading = false;
         resolve(responseArtCollection)
       })
     })
