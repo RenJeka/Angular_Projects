@@ -63,28 +63,28 @@ export class DataService {
    * Метод записывает необходимые свойства сервиса при ответе от сервера.
    * @param observable Observable-объект запроса данных (IArtCollection)
    */
-  // public setUpDataService(observable: Observable<IArtCollection>): Promise<IArtCollection> {
-  //   return new Promise<IArtCollection>((resolve) => {
-  //     observable.subscribe((responseArtCollection) => {
-  //       this.artCollection = responseArtCollection;
-  //       this.artObjects = responseArtCollection.artObjects;
-  //       console.log(responseArtCollection);
-  //       this.isLoading = false;
-  //       resolve(responseArtCollection)
-  //     })
-  //   })
-  // }
-  public setUpDataService(observable: Observable<IArtCollection>): Observable<IArtCollection> {
-    return new Observable<IArtCollection>((subscriber) => {
+  public setUpDataService(observable: Observable<IArtCollection>): Promise<IArtCollection> {
+    return new Promise<IArtCollection>((resolve) => {
       observable.subscribe((responseArtCollection) => {
         this.artCollection = responseArtCollection;
         this.artObjects = responseArtCollection.artObjects;
-        console.log("responseArtCollection: ", responseArtCollection);
+        console.log(responseArtCollection);
         this.isLoading = false;
-        subscriber.next(responseArtCollection)
+        resolve(responseArtCollection)
       })
     })
   }
+  // public setUpDataService(observable: Observable<IArtCollection>): Observable<IArtCollection> {
+  //   return new Observable<IArtCollection>((subscriber) => {
+  //     observable.subscribe((responseArtCollection) => {
+  //       this.artCollection = responseArtCollection;
+  //       this.artObjects = responseArtCollection.artObjects;
+  //       console.log("responseArtCollection: ", responseArtCollection);
+  //       this.isLoading = false;
+  //       subscriber.next(responseArtCollection)
+  //     })
+  //   })
+  // }
 
   public getArtObjectById(id: string): IArtObject {
     if (this.artCollection) {
@@ -109,9 +109,13 @@ export class DataService {
           resolve(this.getArtObjectById(params.id));
         } else {
           this.setUpDataService(this.getCollection())
-            .subscribe(() => {
+            .then(() => {
               resolve(this.getArtObjectById(params.id));
             })
+          // this.setUpDataService(this.getCollection())
+          //   .subscribe(() => {
+          //     resolve(this.getArtObjectById(params.id));
+          //   })
         }
       })
     })
