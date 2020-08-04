@@ -12,6 +12,7 @@ import {PaginationService} from "./pagination.service";
 })
 export class DataService {
 
+  private testCounter = 0; // For testing
   private apiKey = "v6nas9kT";
   private urlQueryParams = {
     key: "v6nas9kT",
@@ -28,6 +29,7 @@ export class DataService {
     'artist',
     'artistdesc',
   ];
+  private getCollectionStream$;
 
   artCollection: IArtCollection;
   artObjects: IArtObject[];
@@ -42,7 +44,7 @@ export class DataService {
       .subscribe((paginationSettings) => {
         this.urlQueryParams.p = paginationSettings.currentPage.toString();
         this.urlQueryParams.ps = paginationSettings.objectPerPage.toString();
-        this.getCollection();
+        this.setUpDataService(this.getCollection());
       });
   }
 
@@ -53,15 +55,19 @@ export class DataService {
     this.isLoading = true;
 
     // Удаляем поле запроса (в "this.urlQueryParams") если оно присутствует и оно пустое
-    if (this.urlQueryParams.q && this.urlQueryParams.q.trim().length <= 0){
+    if (this.urlQueryParams.q !== undefined && this.urlQueryParams.q.trim().length <= 0){
       delete this.urlQueryParams.q
     }
     let queryParams = Object.entries(this.urlQueryParams).map(arrPair => arrPair.join("=")).join("&");
     let observableArtCollection: Observable<IArtCollection>;
     observableArtCollection = this.http.get<IArtCollection>(`https://www.rijksmuseum.nl/api/en/collection?${queryParams}`);
-    console.log("get collection loaded!");
 
-    this.setUpDataService(observableArtCollection);
+    // this.setUpDataService(observableArtCollection);
+
+    this.testCounter++;
+    console.log(this.testCounter);
+    // TODO: сделать логику со стримом, который будет перезаписываться каждый раз, когда отправляется новый запрос
+    //  GET, либо эту же логику сделать с промисом метода "this.setUpDataService()"
     return observableArtCollection
   }
 
@@ -82,12 +88,11 @@ export class DataService {
     }
     this.urlQueryParams.s = orderBy;
     if (searchKewword && searchKewword.trim().length > 0) {
-      this.urlQueryParams.q = searchKewword
+      this.urlQueryParams.q = encodeURI(searchKewword);
     } else {
       delete this.urlQueryParams.q
     }
-    this.getCollection();
-
+    this.setUpDataService(this.getCollection());
   }
 
   /**
@@ -108,7 +113,6 @@ export class DataService {
       observable.subscribe((responseArtCollection) => {
         this.artCollection = responseArtCollection;
         this.artObjects = responseArtCollection.artObjects;
-        console.log(responseArtCollection);
         this.isLoading = false;
         resolve(responseArtCollection)
       })
