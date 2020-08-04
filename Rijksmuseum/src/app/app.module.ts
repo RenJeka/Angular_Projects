@@ -10,6 +10,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { NgForWithNumbersDirective } from './shared/ng-for-with-numbers.directive';
 import { ImageScaleDirective } from './shared/image-scale.directive';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

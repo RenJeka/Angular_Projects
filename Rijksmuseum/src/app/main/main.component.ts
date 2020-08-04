@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup} from "@angular/forms";
 
 import {DataService} from "../shared/data.service";
 import {PaginationService} from "../shared/pagination.service";
-
 
 
 @Component({
@@ -12,8 +12,10 @@ import {PaginationService} from "../shared/pagination.service";
 })
 export class MainComponent implements OnInit {
 
-
-
+  // form
+  public searchForm: FormGroup;
+  public orderBy = new FormControl("");
+  public searchKeyword = new FormControl("");
 
   constructor(
     public dataService: DataService,
@@ -21,6 +23,10 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.searchForm = new FormGroup({
+      orderBy: this.orderBy,
+      searchKeyword: this.searchKeyword
+    });
     // this.dataService.getCollection()
     //   .subscribe((result) => {
     //     this.dataService.artCollection = result;
@@ -31,9 +37,11 @@ export class MainComponent implements OnInit {
 
   }
 
-  searchCollection() {
+  onSubmit(): void {
+    console.log("this.orderBy.value: ", this.orderBy.value);
+    console.log("this.searchKeyword.value: ", this.searchKeyword.value);
 
+    // this.dataService.searchCollection(this.orderBy.value, this.searchKeyword.value)
   }
-
 
 }

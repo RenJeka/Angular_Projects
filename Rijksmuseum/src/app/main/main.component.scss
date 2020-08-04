@@ -5,7 +5,8 @@
   max-width: $bodyWidthLimit;
   min-height: 100vh;
   background-color: lightblue;
-  margin: 20px auto 0 ;
+  margin: 0 auto;
+  padding: 20px 0;
 }
 
 * {
@@ -17,16 +18,23 @@ form {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
+  align-items: center;
+
+  label {
+    min-width: 70px;
+  }
 }
 
-.inp-type,
+.select-sort,
 .inp-word,
 .inp-search {
   color: $colorGrey;
+  margin: 0 5px;
 }
 
-.inp-type {
-  width: 20%;
+.select-sort {
+  //width: 32%;
+  font-size: 14px;
 }
 .inp-word {
   width: 50%;
@@ -130,13 +138,13 @@ form {
     align-items: center;
   }
 
-  .inp-type,
+  .select-sort,
   .inp-word,
   .inp-search {
     margin: 10px 0;
   }
 
-  .inp-type,
+  .select-sort,
   .inp-word{
     width: 100%;
   }
