@@ -13,7 +13,6 @@ import {PaginationService} from "./pagination.service";
 export class DataService {
 
   private apiKey = "v6nas9kT";
-  objectsOnPage = 30;
   private urlQueryParams = {
     key: "v6nas9kT",
     p: this.paginationService.paginatorSettings.currentPage.toString(),
@@ -28,13 +27,13 @@ export class DataService {
     private http: HttpClient,
     private paginationService: PaginationService,
   ) {
-    this.getCollection();
+    // this.getCollection();
     this.paginationService.paginatorStream$
       .subscribe((paginationSettings) => {
-          this.urlQueryParams.p = paginationSettings.currentPage.toString();
-          this.urlQueryParams.ps = paginationSettings.objectPerPage.toString();
-          this.getCollection();
-      })
+        this.urlQueryParams.p = paginationSettings.currentPage.toString();
+        this.urlQueryParams.ps = paginationSettings.objectPerPage.toString();
+        this.getCollection();
+      });
   }
 
   /**
@@ -45,6 +44,8 @@ export class DataService {
     let queryParams = Object.entries(this.urlQueryParams).map(arrPair => arrPair.join("=")).join("&");
     let observableArtCollection: Observable<IArtCollection>;
     observableArtCollection = this.http.get<IArtCollection>(`https://www.rijksmuseum.nl/api/en/collection?${queryParams}`);
+    console.log("get collection loaded!");
+
     this.setUpDataService(observableArtCollection);
     return observableArtCollection
   }
@@ -62,14 +63,25 @@ export class DataService {
    * Метод записывает необходимые свойства сервиса при ответе от сервера.
    * @param observable Observable-объект запроса данных (IArtCollection)
    */
-  public setUpDataService(observable: Observable<IArtCollection>): Promise<IArtCollection> {
-    return new Promise<IArtCollection>((resolve) => {
+  // public setUpDataService(observable: Observable<IArtCollection>): Promise<IArtCollection> {
+  //   return new Promise<IArtCollection>((resolve) => {
+  //     observable.subscribe((responseArtCollection) => {
+  //       this.artCollection = responseArtCollection;
+  //       this.artObjects = responseArtCollection.artObjects;
+  //       console.log(responseArtCollection);
+  //       this.isLoading = false;
+  //       resolve(responseArtCollection)
+  //     })
+  //   })
+  // }
+  public setUpDataService(observable: Observable<IArtCollection>): Observable<IArtCollection> {
+    return new Observable<IArtCollection>((subscriber) => {
       observable.subscribe((responseArtCollection) => {
         this.artCollection = responseArtCollection;
         this.artObjects = responseArtCollection.artObjects;
-        console.log(responseArtCollection);
+        console.log("responseArtCollection: ", responseArtCollection);
         this.isLoading = false;
-        resolve(responseArtCollection)
+        subscriber.next(responseArtCollection)
       })
     })
   }
@@ -88,7 +100,7 @@ export class DataService {
    * избавится от повторяющегося кода.
    * @param activatedRoute ссылка на инжектированный "activatedRoute" в компоненте
    */
-  public setupOnInitComponents(activatedRoute: ActivatedRoute):Promise<IArtObject> {
+  public setupOnInitComponents(activatedRoute: ActivatedRoute): Promise<IArtObject> {
 
     return new Promise<IArtObject>((resolve) => {
       activatedRoute.params.subscribe((params: Params) => {
@@ -97,7 +109,7 @@ export class DataService {
           resolve(this.getArtObjectById(params.id));
         } else {
           this.setUpDataService(this.getCollection())
-            .then(() => {
+            .subscribe(() => {
               resolve(this.getArtObjectById(params.id));
             })
         }
