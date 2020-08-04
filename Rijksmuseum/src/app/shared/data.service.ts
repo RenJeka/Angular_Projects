@@ -17,7 +17,17 @@ export class DataService {
     key: "v6nas9kT",
     p: this.paginationService.paginatorSettings.currentPage.toString(),
     ps: this.paginationService.paginatorSettings.objectPerPage.toString(),
+    s: "relevance",
+    q: '',
   };
+  private allowedSortTypes = [
+    'relevance',
+    'objecttype',
+    'chronologic',
+    'achronologic',
+    'artist',
+    'artistdesc',
+  ];
 
   artCollection: IArtCollection;
   artObjects: IArtObject[];
@@ -41,6 +51,11 @@ export class DataService {
    */
   getCollection(): Observable<IArtCollection> {
     this.isLoading = true;
+
+    // Удаляем поле запроса (в "this.urlQueryParams") если оно присутствует и оно пустое
+    if (this.urlQueryParams.q && this.urlQueryParams.q.trim().length <= 0){
+      delete this.urlQueryParams.q
+    }
     let queryParams = Object.entries(this.urlQueryParams).map(arrPair => arrPair.join("=")).join("&");
     let observableArtCollection: Observable<IArtCollection>;
     observableArtCollection = this.http.get<IArtCollection>(`https://www.rijksmuseum.nl/api/en/collection?${queryParams}`);
@@ -48,6 +63,31 @@ export class DataService {
 
     this.setUpDataService(observableArtCollection);
     return observableArtCollection
+  }
+
+  /**
+   * Метод запускает запрос для получения коллекции Арт Объектов с условием поиска
+   * @param orderBy — тип сортировки
+   * @param searchKewword — Ключевое слово для поиска
+   */
+  searchCollection(orderBy:string, searchKewword?:string): void {
+
+    // Проверяем на подлинность выбраного значения "select"
+    let allowdSotTypeIndex = this.allowedSortTypes.findIndex((sortType) => sortType === orderBy.trim());
+    if (allowdSotTypeIndex >= 0 && allowdSotTypeIndex < this.allowedSortTypes.length) {
+    } else {
+      // Если переданный тип сортировки  не прошел проверку — берем первый тип сортировки с разрешенных типов
+      // (установка по умолчанию)
+      orderBy = this.allowedSortTypes[0];
+    }
+    this.urlQueryParams.s = orderBy;
+    if (searchKewword && searchKewword.trim().length > 0) {
+      this.urlQueryParams.q = searchKewword
+    } else {
+      delete this.urlQueryParams.q
+    }
+    this.getCollection();
+
   }
 
   /**
