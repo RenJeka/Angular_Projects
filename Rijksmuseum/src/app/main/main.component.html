@@ -8,7 +8,7 @@
         id="sorting"
         class="input select-sort"
       >
-        <option value="relevance" [selected] = "true">Relevance</option>
+        <option value="relevance" [selected]="true">Relevance</option>
         <option value="objecttype">Type</option>
         <option value="chronologic">Chronologically (oldest first)</option>
         <option value="achronologic">Chronologically (newest first)</option>
@@ -16,7 +16,7 @@
         <option value="artistdesc">Artist (z-a)</option>
       </select>
     </div>
-<!--    <input type="text" class="input inp-type" placeholder="Order by: Type">-->
+    <!--    <input type="text" class="input inp-type" placeholder="Order by: Type">-->
     <div class="input-block input-block_keyword">
       <input
         formControlName="searchKeyword"
@@ -26,35 +26,53 @@
       >
     </div>
     <div class="input-block input-block_submit">
-      <input type="submit" class="input inp-search btn_orange" value='Search' >
+      <input type="submit" class="input inp-search btn_orange" value='Search'>
     </div>
 
   </form>
 
-  <div class="tiles-container" *ngIf="!dataService.isLoading; else loadingTileContainer">
-<!--    <div-->
-<!--      *ngFor="let artObject of artObjects"-->
-<!--      class="tile border-gray"-->
-<!--      [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"-->
-<!--      (click)="isPopupOpen = !isPopupOpen"-->
-<!--    >-->
+  <ng-template [ngIf]="!dataService.isArtCollectionLoaded">
+    <div class="tiles-container">
       <div
-      *ngFor="let artObject of dataService.artObjects"
-      class="tile border-gray"
-      [ngClass]="{'not-image': !artObject.headerImage.url}"
-      [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"
-      [routerLink]="['/main', 'popup',  artObject.objectNumber]"
-    >
-      <div class="tile__popup-text">
-        {{artObject.longTitle}}
+        *ngForWithNumbers="paginationService.paginatorSettings.objectPerPage"
+        class="tile tile_pulse border-gray"
+      >
+        <div class="spinner spinner_no-shift"></div>
       </div>
     </div>
+  </ng-template>
 
+  <ng-template [ngIf]="dataService.isArtCollectionLoaded && dataService.artCollection.artObjects.length > 0">
+    <div class="tiles-container">
+      <!--    <div-->
+      <!--      *ngFor="let artObject of artObjects"-->
+      <!--      class="tile border-gray"-->
+      <!--      [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"-->
+      <!--      (click)="isPopupOpen = !isPopupOpen"-->
+      <!--    >-->
+      <div
+        *ngFor="let artObject of dataService.artObjects"
+        class="tile border-gray"
+        [ngClass]="{'not-image': !artObject.headerImage.url}"
+        [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"
+        [routerLink]="['/main', 'popup',  artObject.objectNumber]"
+      >
+        <div class="tile__popup-text">
+          {{artObject.longTitle}}
+        </div>
+      </div>
+    </div>
+  </ng-template>
 
-  </div>
-<!--  PAGINATION START -->
-<!--  TODO: Вынести погинацию в отдельный компонент -->
-  <div class="pagination">
+  <ng-template [ngIf]="dataService.isArtCollectionLoaded && dataService.artCollection.artObjects.length <= 0">
+    <div class="tiles-container tiles-container_empty">
+      No art object could be found by your query.
+    </div>
+  </ng-template>
+
+  <!--  PAGINATION START -->
+  <!--  TODO: Вынести погинацию в отдельный компонент -->
+  <div class="pagination" >
     <div class="pagination-control">
       <div class="pagination-control pagination-control_left">
         <div
@@ -72,6 +90,7 @@
       </div>
       <div
         class="paging pagination__numbers"
+        *ngIf="dataService.artCollection && dataService.artCollection.artObjects.length > 0; else singlePage"
       >
         <ul>
           <li
@@ -111,19 +130,15 @@
       </ul>
     </div>
   </div>
-  <!--  PAGINATION FINISH -->
 
-
-  <ng-template #loadingTileContainer>
-    <div class="tiles-container">
-      <div
-        *ngForWithNumbers="paginationService.paginatorSettings.objectPerPage"
-        class="tile tile_pulse border-gray"
-      >
-        <div class="spinner spinner_no-shift"></div>
-      </div>
+  <ng-template #singlePage>
+    <div class="paging pagination__numbers">
+      <ul>
+        <li class="pagination__numbers_active">1</li>
+      </ul>
     </div>
   </ng-template>
+  <!--  PAGINATION FINISH -->
 </section>
 
 <!--<div-->

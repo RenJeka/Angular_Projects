@@ -80,6 +80,18 @@ form {
   justify-content: flex-start;
   margin: 20px -#{$tileSideMargin} 0;
   color: $colorGrey;
+
+  &_empty {
+    height: 75vh;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: brown;
+    text-align: center;
+    padding: 0 10px;
+    line-height: 30px;
+  }
 }
 
 .tile {

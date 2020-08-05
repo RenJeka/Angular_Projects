@@ -37,7 +37,7 @@ export class DataService {
   artObjects: IArtObject[];
   // currentArtObject: IArtObject;
   currentArtObjectDetails: IArtObjectDetails;
-  isLoading = true; // TODO: отрефакторить на isArtCollectionLoaded
+  isArtCollectionLoaded = false;
   isObjDetailsLoaded = false;
 
   constructor(
@@ -59,7 +59,7 @@ export class DataService {
    * Метод получает коллекцию с сервера
    */
   getCollection(): Observable<IArtCollection> {
-    this.isLoading = true;
+    this.isArtCollectionLoaded = false;
 
     // Удаляем поле запроса (в "this.urlQueryParams") если оно присутствует и оно пустое
     if (this.urlQueryParams.q !== undefined && this.urlQueryParams.q.trim().length <= 0) {
@@ -120,7 +120,7 @@ export class DataService {
       observable.subscribe((responseArtCollection) => {
         this.artCollection = responseArtCollection;
         this.artObjects = responseArtCollection.artObjects;
-        this.isLoading = false;
+        this.isArtCollectionLoaded = true;
         console.log(responseArtCollection);
 
         resolve(responseArtCollection)
@@ -134,7 +134,7 @@ export class DataService {
   //       this.artCollection = responseArtCollection;
   //       this.artObjects = responseArtCollection.artObjects;
   //       console.log("responseArtCollection: ", responseArtCollection);
-  //       this.isLoading = false;
+  //       this.isArtCollectionLoaded = true;
   //       subscriber.next(responseArtCollection)
   //     })
   //   })
