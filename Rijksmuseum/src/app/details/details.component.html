@@ -57,6 +57,7 @@
           <ul>
             <li
               *ngFor="let materialName of artObjectDetails.artObject.materials"
+              (click)="searchByTag({material: materialName})"
             >{{materialName}}</li>
           </ul>
         </div>

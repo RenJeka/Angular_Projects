@@ -43,4 +43,11 @@ export class DetailsComponent implements OnInit {
     this.router.navigate(['/main'])
   }
 
+  searchByTag(searchingTagObj: { [propName: string]: any }) {
+    console.log("searchingTagObj: ", searchingTagObj);
+
+    this.dataService.searchByTag(searchingTagObj);
+    this.router.navigate(['/main'])
+  }
+
 }
