@@ -36,7 +36,7 @@
       class="tile border-gray"
       [ngClass]="{'not-image': !artObject.headerImage.url}"
       [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"
-      [routerLink]="['/main', 'popup',  artObject.id]"
+      [routerLink]="['/main', 'popup',  artObject.objectNumber]"
     >
       <div class="tile__popup-text">
         {{artObject.longTitle}}

@@ -32,6 +32,7 @@ export interface IArtObjectDetails {
    longTitle: string;
    materials: string[];
    objectTypes: string[];
+   objectNumber: string;
    plaqueDescriptionEnglish: string;
    principalMaker: string;
    scLabelLine: string;

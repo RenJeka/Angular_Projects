@@ -20,6 +20,7 @@ export class DataService {
     ps: this.paginationService.paginatorSettings.objectPerPage.toString(),
     s: "relevance",
     q: '',
+    imgonly: 'True'
   };
   private allowedSortTypes = [
     'relevance',
@@ -29,11 +30,15 @@ export class DataService {
     'artist',
     'artistdesc',
   ];
-  private getCollectionStream$;
+  private setUpDataServicePromise: Promise<IArtCollection>;
+  // currentArtObjectDetailsPromise: Promise<IArtObjectDetails>;
 
   artCollection: IArtCollection;
   artObjects: IArtObject[];
-  isLoading = true;
+  // currentArtObject: IArtObject;
+  currentArtObjectDetails: IArtObjectDetails;
+  isLoading = true; // TODO: отрефакторить на isArtCollectionLoaded
+  isObjDetailsLoaded = false;
 
   constructor(
     private http: HttpClient,
@@ -44,7 +49,9 @@ export class DataService {
       .subscribe((paginationSettings) => {
         this.urlQueryParams.p = paginationSettings.currentPage.toString();
         this.urlQueryParams.ps = paginationSettings.objectPerPage.toString();
-        this.setUpDataService(this.getCollection());
+        this.setUpDataServicePromise = this.setUpDataService(this.getCollection());
+        console.log("this.setUpDataServicePromise: ", this.setUpDataServicePromise);
+
       });
   }
 
@@ -55,7 +62,7 @@ export class DataService {
     this.isLoading = true;
 
     // Удаляем поле запроса (в "this.urlQueryParams") если оно присутствует и оно пустое
-    if (this.urlQueryParams.q !== undefined && this.urlQueryParams.q.trim().length <= 0){
+    if (this.urlQueryParams.q !== undefined && this.urlQueryParams.q.trim().length <= 0) {
       delete this.urlQueryParams.q
     }
     let queryParams = Object.entries(this.urlQueryParams).map(arrPair => arrPair.join("=")).join("&");
@@ -76,7 +83,7 @@ export class DataService {
    * @param orderBy — тип сортировки
    * @param searchKewword — Ключевое слово для поиска
    */
-  searchCollection(orderBy:string, searchKewword?:string): void {
+  searchCollection(orderBy: string, searchKewword?: string): void {
 
     // Проверяем на подлинность выбраного значения "select"
     let allowdSotTypeIndex = this.allowedSortTypes.findIndex((sortType) => sortType === orderBy.trim());
@@ -114,10 +121,13 @@ export class DataService {
         this.artCollection = responseArtCollection;
         this.artObjects = responseArtCollection.artObjects;
         this.isLoading = false;
+        console.log(responseArtCollection);
+
         resolve(responseArtCollection)
       })
     })
   }
+
   // public setUpDataService(observable: Observable<IArtCollection>): Observable<IArtCollection> {
   //   return new Observable<IArtCollection>((subscriber) => {
   //     observable.subscribe((responseArtCollection) => {
@@ -144,24 +154,63 @@ export class DataService {
    * избавится от повторяющегося кода.
    * @param activatedRoute ссылка на инжектированный "activatedRoute" в компоненте
    */
-  public setupOnInitComponents(activatedRoute: ActivatedRoute): Promise<IArtObject> {
+  public setupOnInitComponents(activatedRoute: ActivatedRoute): Observable<IArtObjectDetails> {
 
-    return new Promise<IArtObject>((resolve) => {
+    // return new Promise<IArtObject>((resolve) => {
+    return new Observable<IArtObjectDetails>((observer) => {
+
       activatedRoute.params.subscribe((params: Params) => {
-        // Проверка нужна в случае, если пользователь скопировал и вставил адрес сразу в URL, или перезагрузил страницу
-        if (this.artCollection) {
-          resolve(this.getArtObjectById(params.id));
+
+        // Если запрос на получения детальных данных уже сделан для этого арт-объекта — просто возвращаем эти данные
+        // (чтобы не делать повторный запрос)
+        if(this.currentArtObjectDetails && (this.currentArtObjectDetails.artObject.objectNumber === params.objNumber)){
+          observer.next(this.currentArtObjectDetails);
         } else {
-          this.setUpDataService(this.getCollection())
-            .then(() => {
-              resolve(this.getArtObjectById(params.id));
+          // TODO: Сделать, чтобы мможно было отслеживать многократные запросы. (Чтобы была переменная стрима (промиса,
+          //  которая каждый раз была новой или очищалась, когда делается новый запрос на сервер))
+
+          // TODO: Добавить проверку на существующий роут (чтобы не делать повторно запрос на сервер)
+          this.isObjDetailsLoaded = false;
+          this.getArtObjectDetail(params.objNumber)
+            .subscribe(response => {
+              this.currentArtObjectDetails = response;
+              this.isObjDetailsLoaded = true;
+              observer.next(response);
             })
-          // this.setUpDataService(this.getCollection())
-          //   .subscribe(() => {
-          //     resolve(this.getArtObjectById(params.id));
-          //   })
+
+          // Проверка нужна в случае, если пользователь скопировал и вставил адрес сразу в URL, или перезагрузил страницу
+          // if (this.artCollection) {
+          //   resolve(this.getArtObjectById(params.id));
+          // } else {
+          //   // Вложенная проверка проверяет, запускался ли метод "this.setUpDataService()" (существует ли его возращ.
+          //   // значение - промис)
+          //   if (this.setUpDataServicePromise){
+          //     this.setUpDataServicePromise
+          //       .then(() => {
+          //
+          //         // TODO Вместо этого запроса необходимо запрашивать детальную информацию, (или правильно посылать
+          //         //  запрос с нужной страницей (или на которой есть этот объект), потому-что страница при
+          //         //  перезагрузке всегда первая)
+          //         let aaa = this.getArtObjectById(params.id);
+          //         resolve(aaa);
+          //       })
+          //   }else {
+          //     this.setUpDataService(this.getCollection())
+          //       .then(() => {
+          //         resolve(this.getArtObjectById(params.id));
+          //       })
+          //   }
+          //
+          //   // this.setUpDataService(this.getCollection())
+          //   //   .subscribe(() => {
+          //   //     resolve(this.getArtObjectById(params.id));
+          //   //   })
+          // }
         }
+
       })
     })
+
+    // })
   }
 }

@@ -11,7 +11,6 @@ import {IArtObjectDetails} from "../shared/iart-object-details";
 })
 export class DetailsComponent implements OnInit {
 
-  currentArtObject: IArtObject;
   artObjectDetails: IArtObjectDetails;
 
   constructor(
@@ -22,16 +21,19 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.setupOnInitComponents(this.route)
-      .then(responseArtObject => {
-        this.currentArtObject = responseArtObject;
-
-        // Запрашиваем детальную информацию об объекте искусства
-        this.dataService.getArtObjectDetail(this.currentArtObject.objectNumber)
-          .subscribe((responseArtObjectDetails) => {
-            console.log("responseArtObjectDetails: ", responseArtObjectDetails);
-            this.artObjectDetails = responseArtObjectDetails;
-          })
-      });
+      .subscribe((responseObjDetails) => {
+          this.artObjectDetails = responseObjDetails
+      })
+      // .then(responseArtObject => {
+      //   this.currentArtObject = responseArtObject;
+      //
+      //   // Запрашиваем детальную информацию об объекте искусства
+      //   this.dataService.getArtObjectDetail(this.currentArtObject.objectNumber)
+      //     .subscribe((responseArtObjectDetails) => {
+      //       console.log("responseArtObjectDetails: ", responseArtObjectDetails);
+      //       this.artObjectDetails = responseArtObjectDetails;
+      //     })
+      // });
   }
 
 }

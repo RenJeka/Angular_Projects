@@ -2,21 +2,21 @@
   <div class="logo">Additional details</div>
   <div
     class="title"
-    *ngIf="currentArtObject; else loadingTitle"
-  >{{currentArtObject.title}}</div>
+    *ngIf="artObjectDetails; else loadingTitle"
+  >{{artObjectDetails.artObject.title}}</div>
 
   <div class="info-block">
     <div
       class="image"
-      [ngClass]="{'not-image': !currentArtObject.webImage.url}"
-      *ngIf="currentArtObject; else loadingImage"
-      [ngStyle]="{ backgroundImage: 'url(' + currentArtObject.webImage.url + ')'}"
+      [ngClass]="{'not-image': !artObjectDetails.artObject.webImage.url}"
+      *ngIf="artObjectDetails; else loadingImage"
+      [ngStyle]="{ backgroundImage: 'url(' + artObjectDetails.artObject.webImage.url + ')'}"
       imageScale
     ></div>
     <div class="details" *ngIf="artObjectDetails; else loadingDetails">
       <div class="details__item">
         <h5 class="details__title">Long Title</h5>
-        <div class="details__description">{{currentArtObject.longTitle}}</div>
+        <div class="details__description">{{artObjectDetails.artObject.longTitle}}</div>
       </div>
       <div class="details__item">
         <h5 class="details__title">scLabelLine</h5>

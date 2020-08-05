@@ -1,29 +1,31 @@
 <div class="container">
   <div
     class="title"
-    *ngIf="currentArtObject; else loadingTitle"
-  >{{currentArtObject.title}}</div>
+    *ngIf="artObjectDetails; else loadingTitle"
+  >{{artObjectDetails.artObject.title}}</div>
   <div
-    *ngIf="currentArtObject; else loadingInfo"
+    *ngIf="artObjectDetails; else loadingInfo"
     class="info-block"
   >
     <div class="image-block">
       <div
-        *ngIf="currentArtObject.webImage; else notImage"
+        *ngIf="artObjectDetails.artObject.webImage; else notImage"
         class="image-block__image"
-        [ngStyle]="{ 'background-image': 'url(' + currentArtObject.webImage.url + ')'}"
+        [ngStyle]="{ 'background-image': 'url(' + artObjectDetails.artObject.webImage.url + ')'}"
         imageScale
       >
       </div>
       <!--    <img class="image-block" src="{{currentArtObject.webImage.url}}" alt="">-->
       <button class="input btn btn_orange favorite-button">⭐ Add to fav list </button>
     </div>
-    <div class="description">{{currentArtObject.longTitle}}</div>
+    <div class="description">{{artObjectDetails.artObject.longTitle}}</div>
   </div>
 
   <div class="control-block">
     <button
       class="input btn"
+      [ngClass]="{'btn_disabled': !dataService.isObjDetailsLoaded}"
+      [disabled]="!dataService.isObjDetailsLoaded"
       (click)="goToDetail()"
     >View more details</button>
     <!--  <button-->
@@ -60,7 +62,6 @@
 
 <ng-template #notImage>
   <div
-    *ngIf="currentArtObject.webImage; else notImage"
     class="image-block__image not-image"
   >
   </div>

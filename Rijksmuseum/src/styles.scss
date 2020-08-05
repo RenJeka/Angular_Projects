@@ -98,6 +98,12 @@ h1, h2, h3, h4, h5, h6 {
   &_orange {
     background: #ff6347;
   }
+  &_disabled {
+    background: #fffefd !important;
+    color: #ddd !important;
+    border: 2px solid #ddd !important;
+    cursor: not-allowed;
+  }
 }
 
 .modal-overlay {

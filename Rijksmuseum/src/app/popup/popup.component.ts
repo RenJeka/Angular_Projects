@@ -1,10 +1,11 @@
 import {
-  Component,
+  Component, OnDestroy,
   OnInit,
 } from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {DataService} from "../shared/data.service";
 import {IArtObject} from "../shared/iart-object";
+import {IArtObjectDetails} from "../shared/iart-object-details";
 
 @Component({
   selector: 'app-popup',
@@ -13,7 +14,7 @@ import {IArtObject} from "../shared/iart-object";
 })
 export class PopupComponent implements OnInit {
 
-  currentArtObject: IArtObject;
+  artObjectDetails: IArtObjectDetails;
 
   constructor(
     private router: Router,
@@ -24,16 +25,24 @@ export class PopupComponent implements OnInit {
   ngOnInit(): void {
 
     this.dataService.setupOnInitComponents(this.route)
-      .then(response => {
-        this.currentArtObject = response;
-        console.log("this.currentArtObject: ", this.currentArtObject);
-
+      .subscribe((responseObjDetails) => {
+        this.artObjectDetails = responseObjDetails
       })
+      // .then(response => {
+      //   this.currentArtObject = response;
+      //   console.log("this.currentArtObject: ", this.currentArtObject);
+      //
+      // })
 
   }
 
   goToDetail() {
-    console.log("Navigation...");
-    this.router.navigate(['/main', 'detail',  this.currentArtObject.id]);
+
+    this.router.navigate(['/main', 'detail',  this.artObjectDetails.artObject.objectNumber]);
+    // console.log("Navigation...");
+    // this.dataService.currentArtObjectDetailsPromise
+    //   .then(() => {
+    //
+    //   })
   }
 }

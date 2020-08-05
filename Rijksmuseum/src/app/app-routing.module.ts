@@ -9,8 +9,8 @@ import {ErrorPageComponent} from "./error-page/error-page.component";
 const routes: Routes = [
   {path:'', redirectTo: "main", pathMatch: 'full'},
   {path:'main', component: MainComponent, children: [
-      {path:'popup/:id', component: PopupComponent},
-      {path:'detail/:id', component: DetailsComponent}
+      {path:'popup/:objNumber', component: PopupComponent},
+      {path:'detail/:objNumber', component: DetailsComponent}
     ]},
   {path: 'error', component: ErrorPageComponent},
   {path: '**',redirectTo: 'error'},
