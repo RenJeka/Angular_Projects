@@ -36,4 +36,11 @@ export class DetailsComponent implements OnInit {
       // });
   }
 
+  onPressCategory(categoryName: string) {
+    console.log("categoryName: ", categoryName);
+
+    this.dataService.searchCollection("relevance", categoryName);
+    this.router.navigate(['/main'])
+  }
+
 }

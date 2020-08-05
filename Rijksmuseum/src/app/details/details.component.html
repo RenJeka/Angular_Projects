@@ -52,7 +52,7 @@
       <div class="details__item">
         <h5 class="details__title">Materials</h5>
         <div
-          *ngIf="artObjectDetails.artObject.materials ; else notInformation"
+          *ngIf="artObjectDetails.artObject.materials.length > 0 ; else notInformation"
           class="details__description details_link">
           <ul>
             <li
@@ -72,10 +72,11 @@
       <div class="details__item">
         <h5 class="details__title">Cathegory</h5>
         <div
-          *ngIf="artObjectDetails.artObject.classification.iconClassDescription ; else notInformation"
+          *ngIf="artObjectDetails.artObject.classification.iconClassDescription.length > 0 ; else notInformation"
           class="details__description details_link">
           <ul>
             <li
+              (click)="onPressCategory(categoryName)"
               *ngFor="let categoryName of artObjectDetails.artObject.classification.iconClassDescription"
             >{{categoryName}}</li>
           </ul>
