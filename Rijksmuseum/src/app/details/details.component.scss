@@ -74,12 +74,12 @@ button {
 .details {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-around;
   margin: 20px -#{$tileSideMargin} 0;
   padding: 25px;
 
   &__item {
-    width: calc(100% / 12 * 6 - (#{$tileSideMargin} * 2));
+    width: calc(100% / 12 * 5 - (#{$tileSideMargin} * 2));
   }
 
   &__title {
@@ -103,6 +103,30 @@ button {
       list-style-type: disc;
       line-height: 17px;
     }
+  }
+}
+
+@media screen and (max-width: $bodyWidthLimit) {
+  .container {
+    width: 100%;
+  }
+  .logo {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .details {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    &__item {
+      width: 100%;
+    }
+  }
+
+  .image {
+    min-height: 75vw; // Высота изображения зависит от ширины экрана!
   }
 }
 //

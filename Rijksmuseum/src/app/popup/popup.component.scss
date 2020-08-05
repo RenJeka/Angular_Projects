@@ -51,6 +51,7 @@ button {
 
 .image-block {
   width: 45%;
+
   &__image {
     display: block;
     width: 100%;
@@ -75,15 +76,6 @@ button {
 
 }
 
-.control-block {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 25px;
-
-  button {
-    background-color: #dddddd;
-  }
-}
 
 .favorite-button {
 
@@ -117,25 +109,17 @@ button {
     margin-top: 20px;
   }
 
-  .control-block {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
-    button {
-      width: 75%;
-      margin-bottom: 15px;
-    }
-  }
 }
 
 @media screen and (max-width: 500px) {
   :host {
-    padding: 15px 0 ;
+    padding: 15px 0;
   }
 
   .image-block {
     text-align: center;
+
     &__image {
       border: none;
     }

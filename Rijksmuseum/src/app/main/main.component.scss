@@ -4,7 +4,7 @@
   display: block;
   max-width: $bodyWidthLimit;
   min-height: 100vh;
-  background-color: lightblue;
+  //background-color: lightblue;
   margin: 0 auto;
   padding: 20px 0;
 }
@@ -21,27 +21,58 @@ form {
   align-items: center;
 
   label {
-    min-width: 70px;
+    min-width: 85px;
+    margin: 0 0 5px 5px;
+    word-spacing: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 }
 
-.select-sort,
-.inp-word,
-.inp-search {
-  color: $colorGrey;
-  margin: 0 5px;
+.input-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 75px;
+  //width: 30%;
+
+  select,
+  input {
+    color: $colorGrey;
+    margin: 0 5px;
+  }
+
+  &_sort {
+    //select {
+    //  font-size: 14px;
+    //}
+  }
+  &_keyword {
+    width: 50%;
+  }
+
+  &_submit {
+    width: 20%;
+  }
 }
 
-.select-sort {
-  //width: 32%;
-  font-size: 14px;
-}
-.inp-word {
-  width: 50%;
-}
-.inp-search {
-  width: 20%;
-}
+//.select-sort,
+//.inp-word,
+//.inp-search {
+//  color: $colorGrey;
+//  margin: 0 5px;
+//}
+//
+//.select-sort {
+//  //width: 32%;
+//  font-size: 14px;
+//}
+//.inp-word {
+//   width: 50%;
+// }
+//.inp-search {
+//  width: 20%;
+//}
 
 .tiles-container {
   display: flex;
@@ -138,20 +169,37 @@ form {
     align-items: center;
   }
 
-  .select-sort,
-  .inp-word,
-  .inp-search {
-    margin: 10px 0;
+  .input-block {
+    height: 70px;
+    //elect,
+    //input {
+    //  margin: 10px 0;
+    //}s
+
+    &_sort,
+    &_keyword{
+      width: 100%;
+    }
+
+    &_submit {
+      width: 50%;
+    }
   }
 
-  .select-sort,
-  .inp-word{
-    width: 100%;
-  }
-
-  .inp-search {
-    width: 50%;
-  }
+  //.select-sort,
+  //.inp-word,
+  //.inp-search {
+  //  margin: 10px 0;
+  //}
+  //
+  //.select-sort,
+  //.inp-word{
+  //  width: 100%;
+  //}
+  //
+  //.inp-search {
+  //  width: 50%;
+  //}
 
   .tiles-container {
     margin: 0;

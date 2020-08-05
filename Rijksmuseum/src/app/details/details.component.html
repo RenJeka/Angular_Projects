@@ -16,36 +16,58 @@
     <div class="details" *ngIf="artObjectDetails; else loadingDetails">
       <div class="details__item">
         <h5 class="details__title">Long Title</h5>
-        <div class="details__description">{{artObjectDetails.artObject.longTitle}}</div>
+        <div
+          *ngIf="artObjectDetails.artObject.longTitle ; else notInformation"
+          class="details__description"
+        >{{artObjectDetails.artObject.longTitle}}</div>
       </div>
       <div class="details__item">
         <h5 class="details__title">scLabelLine</h5>
-        <div class="details__description">{{artObjectDetails.artObject.scLabelLine}}</div>
+        <div
+          *ngIf="artObjectDetails.artObject.scLabelLine ; else notInformation"
+          class="details__description"
+        >{{artObjectDetails.artObject.scLabelLine}}</div>
       </div>
       <div class="details__item">
         <h5 class="details__title">Date</h5>
-        <div class="details__description">{{artObjectDetails.artObject.dating.presentingDate}}</div>
+        <div
+          *ngIf="artObjectDetails.artObject.dating.presentingDate ; else notInformation"
+          class="details__description"
+        >{{artObjectDetails.artObject.dating.presentingDate}}</div>
       </div>
       <div class="details__item">
         <h5 class="details__title">dimensions</h5>
-        <div class="details__description">{{artObjectDetails.artObject.subTitle}}</div>
+        <div
+          *ngIf="artObjectDetails.artObject.subTitle ; else notInformation"
+          class="details__description"
+        >{{artObjectDetails.artObject.subTitle}}</div>
       </div>
       <div class="details__item">
         <h5 class="details__title">Description</h5>
-        <div class="details__description">{{artObjectDetails.artObject.description}}</div>
+        <div
+          *ngIf="artObjectDetails.artObject.description ; else notInformation"
+          class="details__description"
+        >{{artObjectDetails.artObject.description}}</div>
       </div>
       <div class="details__item">
         <h5 class="details__title">Materials</h5>
-        <div class="details__description">{{artObjectDetails.artObject.materials.join(", ") | titlecase}}</div>
+        <div
+          *ngIf="artObjectDetails.artObject.materials ; else notInformation"
+          class="details__description"
+        >{{artObjectDetails.artObject.materials.join(", ") | titlecase}}</div>
       </div>
       <div class="details__item">
         <h5 class="details__title">Plaque Description</h5>
-        <div class="details__description">{{artObjectDetails.artObject.plaqueDescriptionEnglish}}</div>
+        <div
+          *ngIf="artObjectDetails.artObject.plaqueDescriptionEnglish ; else notInformation"
+          class="details__description"
+        >{{artObjectDetails.artObject.plaqueDescriptionEnglish}}</div>
       </div>
 
       <div class="details__item">
         <h5 class="details__title">Cathegory</h5>
         <div
+          *ngIf="artObjectDetails.artObject.classification.iconClassDescription ; else notInformation"
           class="details__description details_link">
           <ul>
             <li
@@ -58,7 +80,7 @@
     </div>
   </div>
 
-  <div class="control-block">
+  <div class="control-block control-block_center">
     <button
       class="input btn"
       [routerLink]="'/main'"
@@ -131,4 +153,8 @@
       </div>
     </div>
   </div>
+</ng-template>
+
+<ng-template #notInformation>
+  <div class="details__description not-information">(Not information)</div>
 </ng-template>

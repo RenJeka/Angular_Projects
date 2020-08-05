@@ -1,27 +1,34 @@
 <section>
   <form (ngSubmit)="onSubmit()" [formGroup]="searchForm">
-    <label for="sorting">Order By: </label>
-    <select
-      formControlName="orderBy"
-      name="sort"
-      id="sorting"
-      class="input select-sort"
-    >
-      <option value="relevance" [selected] = "true">Relevance</option>
-      <option value="objecttype">Type</option>
-      <option value="chronologic">Chronologically (oldest first)</option>
-      <option value="achronologic">Chronologically (newest first)</option>
-      <option value="artist">Artist (a-z)</option>
-      <option value="artistdesc">Artist (z-a)</option>
-    </select>
+    <div class="input-block input-block_sort">
+      <label for="sorting">Order By: </label>
+      <select
+        formControlName="orderBy"
+        name="sort"
+        id="sorting"
+        class="input select-sort"
+      >
+        <option value="relevance" [selected] = "true">Relevance</option>
+        <option value="objecttype">Type</option>
+        <option value="chronologic">Chronologically (oldest first)</option>
+        <option value="achronologic">Chronologically (newest first)</option>
+        <option value="artist">Artist (a-z)</option>
+        <option value="artistdesc">Artist (z-a)</option>
+      </select>
+    </div>
 <!--    <input type="text" class="input inp-type" placeholder="Order by: Type">-->
-    <input
-      formControlName="searchKeyword"
-      type="text"
-      class="input inp-word"
-      placeholder="Search keyword..."
-    >
-    <input type="submit" class="input inp-search btn_orange" value='Search' >
+    <div class="input-block input-block_keyword">
+      <input
+        formControlName="searchKeyword"
+        type="text"
+        class="input inp-word"
+        placeholder="Search keyword..."
+      >
+    </div>
+    <div class="input-block input-block_submit">
+      <input type="submit" class="input inp-search btn_orange" value='Search' >
+    </div>
+
   </form>
 
   <div class="tiles-container" *ngIf="!dataService.isLoading; else loadingTileContainer">
@@ -97,6 +104,7 @@
             }"
           *ngFor="let numOfPages of paginationService.paginatorSettings.allowedResultsPerPage"
           (click)="paginationService.changeResultsPerPage(+numOfPages)"
+
         >{{numOfPages}}</li>
       </ul>
     </div>
