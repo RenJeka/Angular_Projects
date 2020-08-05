@@ -53,8 +53,13 @@
         <h5 class="details__title">Materials</h5>
         <div
           *ngIf="artObjectDetails.artObject.materials ; else notInformation"
-          class="details__description"
-        >{{artObjectDetails.artObject.materials.join(", ") | titlecase}}</div>
+          class="details__description details_link">
+          <ul>
+            <li
+              *ngFor="let materialName of artObjectDetails.artObject.materials"
+            >{{materialName}}</li>
+          </ul>
+        </div>
       </div>
       <div class="details__item">
         <h5 class="details__title">Plaque Description</h5>

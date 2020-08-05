@@ -181,7 +181,7 @@ h1, h2, h3, h4, h5, h6 {
 
 //Common Styles End
 
-// Pagination Start
+// ===== PAGINATION START =====
 .pagination {
   position: relative;
   display: flex;
@@ -191,6 +191,10 @@ h1, h2, h3, h4, h5, h6 {
 
   margin-top: 15px;
   margin-bottom: 30px;
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+  }
 
   &__numbers {
     ul li {
@@ -214,8 +218,6 @@ h1, h2, h3, h4, h5, h6 {
     //    }
     //  }
     //}
-
-
     &_active {
       font-size: 20px !important;
       font-weight: bold;
@@ -229,6 +231,22 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    //width: 100%;
+    &_left{
+      align-self: center;
+      //align-self: flex-start;
+      //align-items: flex-start;
+
+    }
+    &_right{
+      align-self: center;
+      //align-self: flex-end;
+      //align-items: flex-end;
+    }
+  }
 
   &__start,
   &__prev,
@@ -281,9 +299,19 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 5px;
   right: 0;
+  @media screen and (max-width: 700px) {
+    position: relative;
+    top: 0;
+    margin-top: 25px;
+    &:before {
+      display: block;
+      width: 100%;
+      text-align: center;
+      content: "Results per page: ";
+    }
+  }
 }
-
-// Pagination End
+// ===== PAGINATION FINISH =====
 
 body {
   background: linear-gradient(#e1e1e1, transparent 1px), linear-gradient(90deg, #e1e1e1, transparent 1px);
