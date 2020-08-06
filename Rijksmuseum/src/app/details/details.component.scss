@@ -26,7 +26,6 @@
   overflow: auto;
   background: #fff;
   padding: 15px 30px;
-  //border: 2px solid red;
 }
 
 .logo {
@@ -40,9 +39,9 @@
   text-decoration: underline;
   text-underline-position: under;
   user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 button {
@@ -68,7 +67,6 @@ button {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: top center;
-  //background-color: #c1e2b3;
 }
 
 .details {
@@ -85,6 +83,7 @@ button {
   &__title {
     font-size: 20px;
     font-weight: bold;
+
     &:after {
       content: " :";
     }
@@ -120,6 +119,7 @@ button {
     flex-direction: column;
     margin: 0;
     padding: 0;
+
     &__item {
       width: 100%;
     }
@@ -129,9 +129,4 @@ button {
     min-height: 75vw; // Высота изображения зависит от ширины экрана!
   }
 }
-//
-//@media screen and (max-height: 550px) {
-//  .image {
-//    height: 100vh;
-//  }
-//}
+

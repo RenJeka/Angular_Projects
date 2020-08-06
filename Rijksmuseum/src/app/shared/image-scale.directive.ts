@@ -6,6 +6,10 @@ import {
   Renderer2
 } from '@angular/core';
 
+/**
+ * Директива выводит большое изображение (на весь родительский контейнер), добавляя задний фон и размытие заднего фона
+ * Для вывода изображения необходимо передать url изображения как параметр (значение) директивы
+ */
 @Directive({
   selector: '[imageScale]'
 })
@@ -16,8 +20,6 @@ export class ImageScaleDirective {
   private bigImageContainer: HTMLDivElement = this.renderer.createElement("div");
   private bigImageOverlay: HTMLDivElement = this.renderer.createElement("div");
   private imageUrl: string;
-  private isBigImageShow = false;
-
 
   constructor(
     private elRef: ElementRef,
@@ -34,7 +36,6 @@ export class ImageScaleDirective {
 
   @HostListener('click', ['$event'])
   onClick(event: Event) {
-
     this.imageUrl = this.getImageUrl();
 
     if (this.imageUrl) {
@@ -44,7 +45,6 @@ export class ImageScaleDirective {
     }
 
     this.bigImageContainer.classList.toggle("inactive")
-
   }
 
   /**
@@ -61,5 +61,4 @@ export class ImageScaleDirective {
       return null;
     }
   }
-
 }

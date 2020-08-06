@@ -16,7 +16,6 @@
         <option value="artistdesc">Artist (z-a)</option>
       </select>
     </div>
-    <!--    <input type="text" class="input inp-type" placeholder="Order by: Type">-->
     <div class="input-block input-block_keyword">
       <input
         formControlName="searchKeyword"
@@ -34,7 +33,7 @@
     <button
       class="input btn btn_orange"
       (click)="dataService.showFavorite = !dataService.showFavorite"
-    >{{(dataService.showFavorite)? '🔙 Back to all collection' : '🌟 Show Favorite'}}</button>
+    >{{(dataService.showFavorite) ? '🔙 Back to all collection' : '🌟 Show Favorite'}}</button>
   </div>
 
   <ng-template [ngIf]="!dataService.showFavorite && !dataService.isArtCollectionLoaded">
@@ -67,12 +66,6 @@
   <ng-template [ngIf]="!dataService.showFavorite && dataService.isArtCollectionLoaded &&
   dataService.artCollection.artObjects.length > 0">
     <div class="tiles-container">
-      <!--    <div-->
-      <!--      *ngFor="let artObject of artObjects"-->
-      <!--      class="tile border-gray"-->
-      <!--      [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"-->
-      <!--      (click)="isPopupOpen = !isPopupOpen"-->
-      <!--    >-->
       <div
         *ngFor="let artObject of dataService.artObjects"
         class="tile border-gray"
@@ -102,7 +95,7 @@
 
   <!--  PAGINATION START -->
   <!--  TODO: Вынести погинацию в отдельный компонент -->
-  <div class="pagination" >
+  <div class="pagination">
     <div class="pagination-control">
       <div class="pagination-control pagination-control_left">
         <div
@@ -173,16 +166,5 @@
   <!--  PAGINATION FINISH -->
 </section>
 
-<!--<div-->
-<!--  *ngIf="isPopupOpen"-->
-<!--  class="modal-overlay"-->
-<!--&gt;-->
-<!--&lt;!&ndash;  <app-popup&ndash;&gt;-->
-<!--&lt;!&ndash;    [ngClass]="isPopupOpen? 'active' : 'inactive'"&ndash;&gt;-->
-<!--&lt;!&ndash;    (btnCloseHandler)="closePopupHandler()"&ndash;&gt;-->
-<!--&lt;!&ndash;    [isVisible]="isPopupOpen"&ndash;&gt;-->
-<!--&lt;!&ndash;  ></app-popup>&ndash;&gt;-->
-<!--</div>-->
 
 <router-outlet></router-outlet>
-<!--<div class="modal-overlay" *ngIf="(isReportModalOpen)"></div>-->

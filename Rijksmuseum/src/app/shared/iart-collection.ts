@@ -1,5 +1,4 @@
 import {IArtObject} from "./iart-object";
-import {IFacet} from "./ifacet";
 import {INamedFacet} from "./inamed-facet";
 
 export interface IArtCollection {

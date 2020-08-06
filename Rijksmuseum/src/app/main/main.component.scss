@@ -1,6 +1,6 @@
 @import "variables";
 
-:host  {
+:host {
   display: block;
   max-width: $bodyWidthLimit;
   min-height: 100vh;
@@ -14,7 +14,6 @@
 }
 
 form {
-  //width: 80%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -34,7 +33,6 @@ form {
   flex-direction: column;
   justify-content: flex-end;
   height: 75px;
-  //width: 30%;
 
   select,
   input {
@@ -43,15 +41,14 @@ form {
   }
 
   &_sort {
-    //select {
-    //  font-size: 14px;
-    //}
+
   }
+
   &_keyword {
     width: 50%;
   }
 
-  &_submit{
+  &_submit {
     width: 20%;
   }
 }
@@ -68,24 +65,6 @@ form {
     text-transform: uppercase;
   }
 }
-
-//.select-sort,
-//.inp-word,
-//.inp-search {
-//  color: $colorGrey;
-//  margin: 0 5px;
-//}
-//
-//.select-sort {
-//  //width: 32%;
-//  font-size: 14px;
-//}
-//.inp-word {
-//   width: 50%;
-// }
-//.inp-search {
-//  width: 20%;
-//}
 
 .tiles-container {
   display: flex;
@@ -108,14 +87,13 @@ form {
 }
 
 .tile {
-  //width: 150px;
   position: relative;
   width: calc(100% / 12 * 2 - (#{$tileSideMargin} * 2));
   height: 150px;
   overflow: hidden;
   margin: $tileSideMargin;
   background-position: center;
-  background-size: cover ;
+  background-size: cover;
   cursor: pointer;
 
   &_pulse {
@@ -125,9 +103,10 @@ form {
     align-items: center;
     animation-name: pulse;
     animation-duration: 1s;
-    animation-timing-function: linear ;
+    animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
+
   &__popup-text {
     position: absolute;
     bottom: 0;
@@ -140,12 +119,12 @@ form {
     transition: 1s ease;
     cursor: pointer;
     user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
   }
 
-  &:hover &__popup-text{
+  &:hover &__popup-text {
     transform: translateY(0);
   }
 }
@@ -196,13 +175,9 @@ form {
 
   .input-block {
     height: 70px;
-    //elect,
-    //input {
-    //  margin: 10px 0;
-    //}s
 
     &_sort,
-    &_keyword{
+    &_keyword {
       width: 100%;
     }
 
@@ -210,21 +185,6 @@ form {
       width: 50%;
     }
   }
-
-  //.select-sort,
-  //.inp-word,
-  //.inp-search {
-  //  margin: 10px 0;
-  //}
-  //
-  //.select-sort,
-  //.inp-word{
-  //  width: 100%;
-  //}
-  //
-  //.inp-search {
-  //  width: 50%;
-  //}
 
   .tiles-container {
     margin: 0;
@@ -248,6 +208,7 @@ form {
 
   .favorite-block {
     padding: 0 15px 0;
+
     button {
       width: 100%;
     }

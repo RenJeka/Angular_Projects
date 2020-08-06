@@ -87,7 +87,6 @@ export class PaginationService {
   }
 
   // ===== USER INTERFACE — START =====
-
   changeResultsPerPage(numberOfResults: number): void {
     this.paginatorSettings.objectPerPage = numberOfResults;
     this.setChangies();
@@ -125,7 +124,5 @@ export class PaginationService {
       this.setChangies(this.paginatorSettings.maximumPages);
     }
   }
-
   // ===== USER INTERFACE — FINISH =====
-
 }

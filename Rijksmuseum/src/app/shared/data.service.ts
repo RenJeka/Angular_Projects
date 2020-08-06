@@ -49,12 +49,10 @@ export class DataService {
     'f.normalized32Colors.hex',
   ];
   private setUpDataServicePromise: Promise<IArtCollection>;
-  // currentArtObjectDetailsPromise: Promise<IArtObjectDetails>;
 
   showFavorite = false;
   artCollection: IArtCollection;
   artObjects: IArtObject[];
-  // currentArtObject: IArtObject;
   currentArtObjectDetails: IArtObjectDetails;
   isArtCollectionLoaded = false;
   isObjDetailsLoaded = false;
@@ -64,7 +62,6 @@ export class DataService {
     private http: HttpClient,
     private paginationService: PaginationService,
   ) {
-    // this.getCollection();
     console.log("initial this.favoriteArtCollection: ", this.favoriteArtCollection);
 
     this.paginationService.paginatorStream$
@@ -82,23 +79,13 @@ export class DataService {
    */
   getCollection(): Observable<IArtCollection> {
     this.isArtCollectionLoaded = false;
-
-    // // Удаляем поле запроса (в "this.urlQueryParams") если оно присутствует и оно пустое
-    // if (this.urlQueryParams.q !== undefined && this.urlQueryParams.q.trim().length <= 0) {
-    //   delete this.urlQueryParams.q
-    // }
-
     this.deleteEmptyPropertiesInObject(this.urlQueryParams);
     let queryParams = Object.entries(this.urlQueryParams).map(arrPair => arrPair.join("=")).join("&");
     let observableArtCollection: Observable<IArtCollection>;
     observableArtCollection = this.http.get<IArtCollection>(`https://www.rijksmuseum.nl/api/en/collection?${queryParams}`);
 
-    // this.setUpDataService(observableArtCollection);
-
     this.testCounter++;
     console.log(this.testCounter);
-    // TODO: сделать логику со стримом, который будет перезаписываться каждый раз, когда отправляется новый запрос
-    //  GET, либо эту же логику сделать с промисом метода "this.setUpDataService()"
     return observableArtCollection
   }
 
@@ -218,18 +205,6 @@ export class DataService {
     })
   }
 
-  // public setUpDataService(observable: Observable<IArtCollection>): Observable<IArtCollection> {
-  //   return new Observable<IArtCollection>((subscriber) => {
-  //     observable.subscribe((responseArtCollection) => {
-  //       this.artCollection = responseArtCollection;
-  //       this.artObjects = responseArtCollection.artObjects;
-  //       console.log("responseArtCollection: ", responseArtCollection);
-  //       this.isArtCollectionLoaded = true;
-  //       subscriber.next(responseArtCollection)
-  //     })
-  //   })
-  // }
-
   public getArtObjectById(id: string): IArtObject {
     if (this.artCollection) {
       return this.artCollection.artObjects.find(predicate => predicate.id === id)
@@ -246,7 +221,6 @@ export class DataService {
    */
   public setupOnInitComponents(activatedRoute: ActivatedRoute): Observable<IArtObjectDetails> {
 
-    // return new Promise<IArtObject>((resolve) => {
     return new Observable<IArtObjectDetails>((observer) => {
 
       activatedRoute.params.subscribe((params: Params) => {
@@ -256,10 +230,7 @@ export class DataService {
         if (this.currentArtObjectDetails && (this.currentArtObjectDetails.artObject.objectNumber === params.objNumber)) {
           observer.next(this.currentArtObjectDetails);
         } else {
-          // TODO: Сделать, чтобы мможно было отслеживать многократные запросы. (Чтобы была переменная стрима (промиса,
-          //  которая каждый раз была новой или очищалась, когда делается новый запрос на сервер))
 
-          // TODO: Добавить проверку на существующий роут (чтобы не делать повторно запрос на сервер)
           this.isObjDetailsLoaded = false;
           this.getArtObjectDetail(params.objNumber)
             .subscribe(response => {
@@ -267,40 +238,8 @@ export class DataService {
               this.isObjDetailsLoaded = true;
               observer.next(response);
             })
-
-          // Проверка нужна в случае, если пользователь скопировал и вставил адрес сразу в URL, или перезагрузил страницу
-          // if (this.artCollection) {
-          //   resolve(this.getArtObjectById(params.id));
-          // } else {
-          //   // Вложенная проверка проверяет, запускался ли метод "this.setUpDataService()" (существует ли его возращ.
-          //   // значение - промис)
-          //   if (this.setUpDataServicePromise){
-          //     this.setUpDataServicePromise
-          //       .then(() => {
-          //
-          //         // TODO Вместо этого запроса необходимо запрашивать детальную информацию, (или правильно посылать
-          //         //  запрос с нужной страницей (или на которой есть этот объект), потому-что страница при
-          //         //  перезагрузке всегда первая)
-          //         let aaa = this.getArtObjectById(params.id);
-          //         resolve(aaa);
-          //       })
-          //   }else {
-          //     this.setUpDataService(this.getCollection())
-          //       .then(() => {
-          //         resolve(this.getArtObjectById(params.id));
-          //       })
-          //   }
-          //
-          //   // this.setUpDataService(this.getCollection())
-          //   //   .subscribe(() => {
-          //   //     resolve(this.getArtObjectById(params.id));
-          //   //   })
-          // }
         }
-
       })
     })
-
-    // })
   }
 }

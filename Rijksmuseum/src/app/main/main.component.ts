@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 
 import {DataService} from "../shared/data.service";
@@ -27,14 +27,6 @@ export class MainComponent implements OnInit {
       orderBy: this.orderBy,
       searchKeyword: this.searchKeyword
     });
-    // this.dataService.getCollection()
-    //   .subscribe((result) => {
-    //     this.dataService.artCollection = result;
-    //     this.dataService.artObjects = result.artObjects;
-    //       // this.artCollection = result;
-    //       // this.artObjects = result.artObjects;
-    //   });
-
   }
 
   onSubmit(): void {
@@ -43,5 +35,4 @@ export class MainComponent implements OnInit {
 
     this.dataService.searchCollection(this.orderBy.value, this.searchKeyword.value)
   }
-
 }

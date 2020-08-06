@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {IArtObject} from "../shared/iart-object";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../shared/data.service";
 import {IArtObjectDetails} from "../shared/iart-object-details";
@@ -22,18 +21,8 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.setupOnInitComponents(this.route)
       .subscribe((responseObjDetails) => {
-          this.artObjectDetails = responseObjDetails
+        this.artObjectDetails = responseObjDetails
       })
-      // .then(responseArtObject => {
-      //   this.currentArtObject = responseArtObject;
-      //
-      //   // Запрашиваем детальную информацию об объекте искусства
-      //   this.dataService.getArtObjectDetail(this.currentArtObject.objectNumber)
-      //     .subscribe((responseArtObjectDetails) => {
-      //       console.log("responseArtObjectDetails: ", responseArtObjectDetails);
-      //       this.artObjectDetails = responseArtObjectDetails;
-      //     })
-      // });
   }
 
   onPressCategory(categoryName: string) {
@@ -49,5 +38,4 @@ export class DetailsComponent implements OnInit {
     this.dataService.searchByTag(searchingTagObj);
     this.router.navigate(['/main'])
   }
-
 }

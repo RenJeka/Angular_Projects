@@ -1,10 +1,6 @@
-import {
-  Component, OnDestroy,
-  OnInit,
-} from '@angular/core';
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {Component, OnInit,} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 import {DataService} from "../shared/data.service";
-import {IArtObject} from "../shared/iart-object";
 import {IArtObjectDetails} from "../shared/iart-object-details";
 
 @Component({
@@ -30,11 +26,6 @@ export class PopupComponent implements OnInit {
         this.artObjectDetails = responseObjDetails
         this.isInFavoriteCollection = this.checkFavoriteCollection();
       })
-      // .then(response => {
-      //   this.currentArtObject = response;
-      //   console.log("this.currentArtObject: ", this.currentArtObject);
-      //
-      // })
   }
 
   /**
@@ -53,16 +44,10 @@ export class PopupComponent implements OnInit {
   }
 
   goToDetail() {
-
-    this.router.navigate(['/main', 'detail',  this.artObjectDetails.artObject.objectNumber]);
-    // console.log("Navigation...");
-    // this.dataService.currentArtObjectDetailsPromise
-    //   .then(() => {
-    //
-    //   })
+    this.router.navigate(['/main', 'detail', this.artObjectDetails.artObject.objectNumber]);
   }
 
-  toggleToFavCollection():void {
+  toggleToFavCollection(): void {
 
     let favIndex;
     if (!this.isInFavoriteCollection) {

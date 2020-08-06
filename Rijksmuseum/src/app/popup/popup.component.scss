@@ -21,12 +21,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 700px;
-  //max-height: 100vh;
   height: 480px;
   overflow: auto;
   background: #fff;
   padding: 15px 30px;
-  //border: 2px solid red;
 }
 
 button {
@@ -48,7 +46,6 @@ button {
 .info-block {
   display: flex;
   flex-wrap: nowrap;
-  //background-color: #1b6d85;
 }
 
 .image-block {
@@ -61,7 +58,6 @@ button {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top center;
-    //background-color: #c1e2b3;
   }
 
   button {
@@ -77,7 +73,6 @@ button {
   font-size: 16px;
   font-weight: lighter;
   line-height: 20px;
-
 }
 
 @media screen and (max-width: 700px) {
@@ -109,8 +104,6 @@ button {
     height: auto;
     margin-top: 20px;
   }
-
-
 }
 
 @media screen and (max-width: 500px) {
@@ -131,7 +124,3 @@ button {
   }
 }
 
-@media screen and (max-height: 550px) {
-  :host {
-  }
-}

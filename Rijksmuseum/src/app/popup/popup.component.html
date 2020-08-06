@@ -15,13 +15,12 @@
         imageScale
       >
       </div>
-      <!--    <img class="image-block" src="{{currentArtObject.webImage.url}}" alt="">-->
       <button
         class="input btn"
         [ngClass]="isInFavoriteCollection ? 'btn_green' : 'btn_orange'"
         [disabled]="!dataService.isObjDetailsLoaded"
         (click)="toggleToFavCollection()"
-      >{{isInFavoriteCollection? '✔️ Object is in fav list' : '⭐ Add to fav list '}}</button>
+      >{{isInFavoriteCollection ? '✔️ Object is in fav list' : '⭐ Add to fav list '}}</button>
     </div>
     <div class="description">{{artObjectDetails.artObject.longTitle}}</div>
   </div>
@@ -32,34 +31,34 @@
       [ngClass]="{'btn_disabled': !dataService.isObjDetailsLoaded}"
       [disabled]="!dataService.isObjDetailsLoaded"
       (click)="goToDetail()"
-    >View more details</button>
-    <!--  <button-->
-    <!--    class="input btn"-->
-    <!--    (click)="closePopup()"-->
-    <!--  >Close</button>-->
+    >View more details
+    </button>
+
     <button
       class="input btn"
       [routerLink]="'/main'"
-    >Close</button>
+    >Close
+    </button>
   </div>
 </div>
 
 <!-- Loading templates -->
 <ng-template #loadingTitle>
-<div class="title">
-  <div class="spinner"></div>
-</div>
+  <div class="title">
+    <div class="spinner"></div>
+  </div>
 </ng-template>
 
 <ng-template #loadingInfo>
-  <div  class="info-block" >
+  <div class="info-block">
     <div class="image-block">
-      <div class="image-block__image" >
+      <div class="image-block__image">
         <div class="spinner"></div>
       </div>
       <button
         class="input btn btn_disabled"
-      >Add to fav list</button>
+      >Add to fav list
+      </button>
 
     </div>
 
@@ -70,8 +69,5 @@
 </ng-template>
 
 <ng-template #notImage>
-  <div
-    class="image-block__image not-image"
-  >
-  </div>
+  <div class="image-block__image not-image"></div>
 </ng-template>
