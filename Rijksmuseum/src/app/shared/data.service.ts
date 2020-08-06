@@ -26,7 +26,6 @@ export class DataService {
     technique: '',
     'f.dating.period': '',
     'f.normalized32Colors.hex': '',
-
   };
   private allowedSortTypes = [
     'relevance',
@@ -59,11 +58,14 @@ export class DataService {
   isArtCollectionLoaded = false;
   isObjDetailsLoaded = false;
 
+  favoriteArtCollection: IArtObjectDetails[] = [];
   constructor(
     private http: HttpClient,
     private paginationService: PaginationService,
   ) {
     // this.getCollection();
+    console.log("initial this.favoriteArtCollection: ", this.favoriteArtCollection);
+
     this.paginationService.paginatorStream$
       .subscribe((paginationSettings) => {
         this.urlQueryParams.p = paginationSettings.currentPage.toString();

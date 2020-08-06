@@ -16,7 +16,11 @@
       >
       </div>
       <!--    <img class="image-block" src="{{currentArtObject.webImage.url}}" alt="">-->
-      <button class="input btn btn_orange favorite-button">⭐ Add to fav list </button>
+      <button
+        class="input btn btn_orange favorite-button"
+        (click)="toggleToFavCollection()"
+      >⭐ Add to fav list </button>
+      {{isInFavoriteCollection | json}}
     </div>
     <div class="description">{{artObjectDetails.artObject.longTitle}}</div>
   </div>
@@ -52,8 +56,12 @@
       <div class="image-block__image" >
         <div class="spinner"></div>
       </div>
-      <button class="input btn btn_orange favorite-button">⭐ Add to fav list </button>
+      <button
+        class="input btn btn_orange favorite-button"
+      >⭐ Add to fav list</button>
+
     </div>
+
     <div class="description">
       <div class="spinner"></div>
     </div>
