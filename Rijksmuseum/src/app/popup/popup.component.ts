@@ -56,8 +56,12 @@ export class PopupComponent implements OnInit {
       this.isInFavoriteCollection = true;
 
     } else {
-      favIndex = this.dataService.favoriteArtCollection.indexOf(this.artObjectDetails);
-      if (favIndex !== -1) {
+      this.dataService.favoriteArtCollection.forEach((artObjectDetails: IArtObjectDetails, index: number) => {
+        if (artObjectDetails.artObject.objectNumber === this.artObjectDetails.artObject.objectNumber) {
+          favIndex = index;
+        }
+      });
+      if (favIndex >= 0) {
         this.dataService.favoriteArtCollection.splice(favIndex, 1);
       } else {
         throw new Error(`Не найден элемент текущий элемент ${this.artObjectDetails} в массиве избранного ${this.dataService.favoriteArtCollection}`)
