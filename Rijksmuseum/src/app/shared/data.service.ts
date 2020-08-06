@@ -51,6 +51,7 @@ export class DataService {
   private setUpDataServicePromise: Promise<IArtCollection>;
   // currentArtObjectDetailsPromise: Promise<IArtObjectDetails>;
 
+  showFavorite = false;
   artCollection: IArtCollection;
   artObjects: IArtObject[];
   // currentArtObject: IArtObject;
@@ -211,7 +212,7 @@ export class DataService {
         this.artObjects = responseArtCollection.artObjects;
         this.isArtCollectionLoaded = true;
         console.log(responseArtCollection);
-
+        // this.showFavorite = false; //  TODO: ! uncomment in next commit !
         resolve(responseArtCollection)
       })
     })

@@ -17,10 +17,11 @@
       </div>
       <!--    <img class="image-block" src="{{currentArtObject.webImage.url}}" alt="">-->
       <button
-        class="input btn btn_orange favorite-button"
+        class="input btn"
+        [ngClass]="isInFavoriteCollection ? 'btn_green' : 'btn_orange'"
+        [disabled]="!dataService.isObjDetailsLoaded"
         (click)="toggleToFavCollection()"
-      >⭐ Add to fav list </button>
-      {{isInFavoriteCollection | json}}
+      >{{isInFavoriteCollection? '✔️ Object is in fav list' : '⭐ Add to fav list '}}</button>
     </div>
     <div class="description">{{artObjectDetails.artObject.longTitle}}</div>
   </div>
@@ -57,8 +58,8 @@
         <div class="spinner"></div>
       </div>
       <button
-        class="input btn btn_orange favorite-button"
-      >⭐ Add to fav list</button>
+        class="input btn btn_disabled"
+      >Add to fav list</button>
 
     </div>
 

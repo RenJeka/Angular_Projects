@@ -14,7 +14,7 @@
 }
 
 form {
-  width: 80%;
+  //width: 80%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -51,8 +51,21 @@ form {
     width: 50%;
   }
 
-  &_submit {
+  &_submit{
     width: 20%;
+  }
+}
+
+.favorite-block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+
+  button {
+    width: 300px;
+    text-transform: uppercase;
   }
 }
 
@@ -231,5 +244,12 @@ form {
 @media screen and (max-width: 400px) {
   .tile {
     width: calc(100% - (#{$tileSideMargin} * 2));
+  }
+
+  .favorite-block {
+    padding: 0 15px 0;
+    button {
+      width: 100%;
+    }
   }
 }

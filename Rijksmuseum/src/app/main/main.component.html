@@ -30,8 +30,14 @@
     </div>
 
   </form>
+  <div class="favorite-block">
+    <button
+      class="input btn btn_orange"
+      (click)="dataService.showFavorite = !dataService.showFavorite"
+    >{{(dataService.showFavorite)? '🔙 Back to all collection' : '🌟 Show Favorite'}}</button>
+  </div>
 
-  <ng-template [ngIf]="!dataService.isArtCollectionLoaded">
+  <ng-template [ngIf]="!dataService.showFavorite && !dataService.isArtCollectionLoaded">
     <div class="tiles-container">
       <div
         *ngForWithNumbers="paginationService.paginatorSettings.objectPerPage"
@@ -42,7 +48,24 @@
     </div>
   </ng-template>
 
-  <ng-template [ngIf]="dataService.isArtCollectionLoaded && dataService.artCollection.artObjects.length > 0">
+  <ng-template [ngIf]="dataService.showFavorite">
+    <div class="tiles-container">
+      <div
+        *ngFor="let favoriteArtObject of dataService.favoriteArtCollection"
+        class="tile border-gray"
+        [ngClass]="{'not-image': !favoriteArtObject.artObject.webImage.url}"
+        [ngStyle]="{'background-image': 'url(' + favoriteArtObject.artObject.webImage.url + ')'}"
+        [routerLink]="['/main', 'popup',  favoriteArtObject.artObject.objectNumber]"
+      >
+        <div class="tile__popup-text">
+          {{favoriteArtObject.artObject.longTitle}}
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="!dataService.showFavorite && dataService.isArtCollectionLoaded &&
+  dataService.artCollection.artObjects.length > 0">
     <div class="tiles-container">
       <!--    <div-->
       <!--      *ngFor="let artObject of artObjects"-->
@@ -64,9 +87,16 @@
     </div>
   </ng-template>
 
-  <ng-template [ngIf]="dataService.isArtCollectionLoaded && dataService.artCollection.artObjects.length <= 0">
+  <ng-template [ngIf]="!dataService.showFavorite && dataService.isArtCollectionLoaded &&
+  dataService.artCollection.artObjects.length <= 0">
     <div class="tiles-container tiles-container_empty">
       No art object could be found by your query.
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="dataService.showFavorite && dataService.favoriteArtCollection.length <= 0">
+    <div class="tiles-container tiles-container_empty">
+      No art object in your favorite collection could be found by your query.
     </div>
   </ng-template>
 
@@ -90,7 +120,9 @@
       </div>
       <div
         class="paging pagination__numbers"
-        *ngIf="dataService.artCollection && dataService.artCollection.artObjects.length > 0; else singlePage"
+        *ngIf="!dataService.showFavorite
+        && (dataService.artCollection && dataService.artCollection.artObjects.length > 0); else
+        singlePage"
       >
         <ul>
           <li

@@ -37,7 +37,14 @@ export interface IArtObjectDetails {
    principalMaker: string;
    scLabelLine: string;
    subTitle: string;
-
+   webImage: {
+     guid: string;
+     height: number;
+     offsetPercentageX: number;
+     offsetPercentageY: number;
+     url: string;
+     width:string;
+   }
    [propName: string]: any;
  };
  artObjectPage: {
