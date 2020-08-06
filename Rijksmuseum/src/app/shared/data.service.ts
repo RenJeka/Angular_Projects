@@ -193,13 +193,13 @@ export class DataService {
    * @param observable Observable-объект запроса данных (IArtCollection)
    */
   public setUpDataService(observable: Observable<IArtCollection>): Promise<IArtCollection> {
+    this.showFavorite = false;
     return new Promise<IArtCollection>((resolve) => {
       observable.subscribe((responseArtCollection) => {
         this.artCollection = responseArtCollection;
         this.artObjects = responseArtCollection.artObjects;
         this.isArtCollectionLoaded = true;
         console.log(responseArtCollection);
-        // this.showFavorite = false; //  TODO: ! uncomment in next commit !
         resolve(responseArtCollection)
       })
     })
