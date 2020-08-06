@@ -54,7 +54,7 @@
         class="tile border-gray"
         [ngClass]="{'not-image': !favoriteArtObject.artObject.webImage.url}"
         [ngStyle]="{'background-image': 'url(' + favoriteArtObject.artObject.webImage.url + ')'}"
-        [routerLink]="['/main', 'popup',  favoriteArtObject.artObject.objectNumber]"
+        [routerLink]="['/', 'popup',  favoriteArtObject.artObject.objectNumber]"
       >
         <div class="tile__popup-text">
           {{favoriteArtObject.artObject.longTitle}}
@@ -71,7 +71,7 @@
         class="tile border-gray"
         [ngClass]="{'not-image': !artObject.headerImage.url}"
         [ngStyle]="{'background-image': 'url(' + artObject.headerImage.url + ')'}"
-        [routerLink]="['/main', 'popup',  artObject.objectNumber]"
+        [routerLink]="['/', 'popup',  artObject.objectNumber]"
       >
         <div class="tile__popup-text">
           {{artObject.longTitle}}

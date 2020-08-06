@@ -45,7 +45,7 @@ export class PopupComponent implements OnInit {
   }
 
   goToDetail() {
-    this.router.navigate(['/main', 'detail', this.artObjectDetails.artObject.objectNumber]);
+    this.router.navigate(['/', 'detail', this.artObjectDetails.artObject.objectNumber]);
   }
 
   toggleToFavCollection(): void {

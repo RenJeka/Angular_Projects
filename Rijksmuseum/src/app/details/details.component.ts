@@ -28,11 +28,11 @@ export class DetailsComponent implements OnInit {
 
   onPressCategory(categoryName: string) {
     this.dataService.searchCollection("relevance", categoryName);
-    this.router.navigate(['/main'])
+    this.router.navigate(['/'])
   }
 
   searchByTag(searchingTagObj: { [propName: string]: any }) {
     this.dataService.searchByTag(searchingTagObj);
-    this.router.navigate(['/main'])
+    this.router.navigate(['/'])
   }
 }
