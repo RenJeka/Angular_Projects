@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {MainComponent} from "./main/main.component";
-import {PopupComponent} from "./popup/popup.component";
-import {DetailsComponent} from "./details/details.component";
-import {ErrorPageComponent} from "./error-page/error-page.component";
+
+// Components
+import {MainComponent} from "src/app/main/main.component";
+import {PopupComponent} from "src/app/popup/popup.component";
+import {DetailsComponent} from "src/app/details/details.component";
+import {ErrorPageComponent} from "src/app/error-page/error-page.component";
 
 
 const routes: Routes = [
@@ -14,7 +16,6 @@ const routes: Routes = [
     ]},
   {path: 'error', component: ErrorPageComponent},
   {path: '**',redirectTo: 'error'},
-
 ];
 
 @NgModule({

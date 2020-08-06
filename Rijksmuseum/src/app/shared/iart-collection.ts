@@ -1,5 +1,5 @@
-import {IArtObject} from "./iart-object";
-import {INamedFacet} from "./inamed-facet";
+import {IArtObject} from "src/app/shared/iart-object";
+import {INamedFacet} from "src/app/shared/inamed-facet";
 
 export interface IArtCollection {
 

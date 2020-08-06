@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {DataService} from "../shared/data.service";
-import {IArtObjectDetails} from "../shared/iart-object-details";
+
+import {DataService} from "src/app/shared/data.service";
+import {IArtObjectDetails} from "src/app/shared/iart-object-details";
 
 @Component({
   selector: 'app-details',

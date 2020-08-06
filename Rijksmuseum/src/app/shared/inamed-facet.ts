@@ -1,4 +1,4 @@
-import {IFacet} from "./ifacet";
+import {IFacet} from "src/app/shared/ifacet";
 
 export interface INamedFacet {
   facets: IFacet[];

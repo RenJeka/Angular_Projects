@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 
-import {DataService} from "../shared/data.service";
-import {PaginationService} from "../shared/pagination.service";
+import {DataService} from "src/app/shared/data.service";
+import {PaginationService} from "src/app/shared/pagination.service";
 
 
 @Component({

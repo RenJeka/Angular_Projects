@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {IArtCollection} from "./iart-collection";
-import {IArtObject} from "./iart-object";
 import {ActivatedRoute, Params} from "@angular/router";
-import {IArtObjectDetails} from "./iart-object-details";
-import {PaginationService} from "./pagination.service";
+import {Observable} from "rxjs";
+
+import {IArtCollection} from "src/app/shared/iart-collection";
+import {IArtObject} from "src/app/shared/iart-object";
+import {IArtObjectDetails} from "src/app/shared/iart-object-details";
+import {PaginationService} from "src/app/shared/pagination.service";
 
 @Injectable({
   providedIn: 'root'

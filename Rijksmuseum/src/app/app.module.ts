@@ -1,16 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MainComponent } from './main/main.component';
-import { PopupComponent } from './popup/popup.component';
-import { DetailsComponent } from './details/details.component';
 import {HttpClientModule} from "@angular/common/http";
-import { NgForWithNumbersDirective } from './shared/ng-for-with-numbers.directive';
-import { ImageScaleDirective } from './shared/image-scale.directive';
-import { ErrorPageComponent } from './error-page/error-page.component';
 import {ReactiveFormsModule} from "@angular/forms";
+
+// Modules
+import { AppRoutingModule } from 'src/app/app-routing.module';
+
+// Components
+import { AppComponent } from 'src/app/app.component';
+import { MainComponent } from 'src/app/main/main.component';
+import { PopupComponent } from 'src/app/popup/popup.component';
+import { DetailsComponent } from 'src/app/details/details.component';
+import { ErrorPageComponent } from 'src/app/error-page/error-page.component';
+
+// Directives
+import { ImageScaleDirective } from 'src/app/shared/image-scale.directive';
+import { NgForWithNumbersDirective } from 'src/app/shared/ng-for-with-numbers.directive';
 
 @NgModule({
   declarations: [

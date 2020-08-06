@@ -1,4 +1,4 @@
-import {IArtObjectImage} from "./iart-object-image";
+import {IArtObjectImage} from "src/app/shared/iart-object-image";
 
 export interface IArtObject {
   hasImage: boolean;
