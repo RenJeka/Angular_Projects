@@ -53,7 +53,6 @@ export class PopupComponent implements OnInit {
     if (!this.isInFavoriteCollection) {
       this.dataService.favoriteArtCollection.push(this.artObjectDetails);
       this.isInFavoriteCollection = true;
-      console.log("favCollection: ", this.dataService.favoriteArtCollection);
 
     } else {
       favIndex = this.dataService.favoriteArtCollection.indexOf(this.artObjectDetails);
@@ -63,7 +62,6 @@ export class PopupComponent implements OnInit {
         throw new Error(`Не найден элемент текущий элемент ${this.artObjectDetails} в массиве избранного ${this.dataService.favoriteArtCollection}`)
       }
       this.isInFavoriteCollection = false;
-      console.log("favCollection: ", this.dataService.favoriteArtCollection);
     }
   }
 }

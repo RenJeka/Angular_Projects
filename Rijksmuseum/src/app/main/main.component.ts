@@ -30,9 +30,6 @@ export class MainComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log("this.orderBy.value: ", this.orderBy.value);
-    console.log("this.searchKeyword.value: ", encodeURI(this.searchKeyword.value));
-
     this.dataService.searchCollection(this.orderBy.value, this.searchKeyword.value)
   }
 }

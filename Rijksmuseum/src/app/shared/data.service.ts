@@ -12,7 +12,6 @@ import {PaginationService} from "./pagination.service";
 })
 export class DataService {
 
-  private testCounter = 0; // For testing
   private apiKey = "v6nas9kT";
   private urlQueryParams = {
     key: "v6nas9kT",
@@ -62,15 +61,11 @@ export class DataService {
     private http: HttpClient,
     private paginationService: PaginationService,
   ) {
-    console.log("initial this.favoriteArtCollection: ", this.favoriteArtCollection);
-
     this.paginationService.paginatorStream$
       .subscribe((paginationSettings) => {
         this.urlQueryParams.p = paginationSettings.currentPage.toString();
         this.urlQueryParams.ps = paginationSettings.objectPerPage.toString();
         this.setUpDataServicePromise = this.setUpDataService(this.getCollection());
-        console.log("this.setUpDataServicePromise: ", this.setUpDataServicePromise);
-
       });
   }
 
@@ -83,9 +78,6 @@ export class DataService {
     let queryParams = Object.entries(this.urlQueryParams).map(arrPair => arrPair.join("=")).join("&");
     let observableArtCollection: Observable<IArtCollection>;
     observableArtCollection = this.http.get<IArtCollection>(`https://www.rijksmuseum.nl/api/en/collection?${queryParams}`);
-
-    this.testCounter++;
-    console.log(this.testCounter);
     return observableArtCollection
   }
 
@@ -145,8 +137,6 @@ export class DataService {
     emptyKeys.forEach((key) => {
       delete objectLink[key]
     });
-    console.log("processed urlQueryParams: ", this.urlQueryParams);
-
   }
 
   /**
@@ -199,7 +189,6 @@ export class DataService {
         this.artCollection = responseArtCollection;
         this.artObjects = responseArtCollection.artObjects;
         this.isArtCollectionLoaded = true;
-        console.log(responseArtCollection);
         resolve(responseArtCollection)
       })
     })

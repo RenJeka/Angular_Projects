@@ -26,15 +26,11 @@ export class DetailsComponent implements OnInit {
   }
 
   onPressCategory(categoryName: string) {
-    console.log("categoryName: ", categoryName);
-
     this.dataService.searchCollection("relevance", categoryName);
     this.router.navigate(['/main'])
   }
 
   searchByTag(searchingTagObj: { [propName: string]: any }) {
-    console.log("searchingTagObj: ", searchingTagObj);
-
     this.dataService.searchByTag(searchingTagObj);
     this.router.navigate(['/main'])
   }

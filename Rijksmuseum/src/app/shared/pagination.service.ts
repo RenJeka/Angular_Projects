@@ -65,8 +65,6 @@ export class PaginationService {
       }
       this.paginatorSettings.paging = pages;
     }
-
-    console.log(pages);
   }
 
   private recalculateMaxPages(): void {
