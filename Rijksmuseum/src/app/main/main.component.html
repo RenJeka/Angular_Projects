@@ -83,13 +83,15 @@
   <ng-template [ngIf]="!dataService.showFavorite && dataService.isArtCollectionLoaded &&
   dataService.artCollection.artObjects.length <= 0">
     <div class="tiles-container tiles-container_empty">
-      No art object could be found by your query.
+      <p>No art object could be found by your query.</p>
+      <p>Try other query</p>
     </div>
   </ng-template>
 
   <ng-template [ngIf]="dataService.showFavorite && dataService.favoriteArtCollection.length <= 0">
     <div class="tiles-container tiles-container_empty">
-      No art object in your favorite collection could be found by your query.
+      <p>You have no art object in your favorite collection yet.</p>
+      <p>Let's add some =)</p>
     </div>
   </ng-template>
 

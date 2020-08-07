@@ -42,6 +42,10 @@ export class PaginationService {
     this.setChangies();
   }
 
+  /**
+   * Метод пересчитывает шкалу сос траницами (шкалу пагинации)
+   * После каждого изменения, связаную с пагинацией,  —  этот метод должен вызываться чтобы пересчитать шкалу пагинации
+   */
   recalculatePaging(): void {
     let pages = [];
     let halfPaging = (Math.floor(this.paginatorSettings.paginatorScaleLength / 2));
@@ -67,8 +71,12 @@ export class PaginationService {
     }
   }
 
-  private recalculateMaxPages(): void {
-    this.paginatorSettings.maximumPages = Math.floor(10000 / this.paginatorSettings.objectPerPage);
+  /**
+   * Метод пересчитывает и перезаписывает значение максимальной страницы в пагинации.
+   * TODO: переделать этот метод на getMaximumPage, которая возвращает максимальную страницу
+   */
+  private getMaximumPage(): number {
+    return Math.floor(10000 / this.paginatorSettings.objectPerPage);
   }
 
   /**
@@ -79,14 +87,26 @@ export class PaginationService {
     if (currentPage) {
       this.paginatorSettings.currentPage = currentPage;
     }
-    this.recalculateMaxPages();
+    this.paginatorSettings.maximumPages = this.getMaximumPage();
     this.recalculatePaging();
     this.paginatorStream$.next(this.paginatorSettings);
   }
 
   // ===== USER INTERFACE — START =====
-  changeResultsPerPage(numberOfResults: number): void {
-    this.paginatorSettings.objectPerPage = numberOfResults;
+  changeResultsPerPage(numberOfResultsPerPage: number): void {
+
+    let tempMaxPages: number;
+    let isCurrentPageOverLimit:boolean;
+
+    this.paginatorSettings.objectPerPage = numberOfResultsPerPage;
+    tempMaxPages = this.getMaximumPage();
+    isCurrentPageOverLimit = this.paginatorSettings.currentPage > tempMaxPages;
+    // Если максимальное кол-во страниц меньше (пользователь выбрал больше результатов на странице) и текущая
+    // страница выходит за пределы (максимально-возможной страницы) — тогда перенаправляем пользователя на текущую
+    // максимально возможную страницу
+    if ((tempMaxPages < this.paginatorSettings.maximumPages) && isCurrentPageOverLimit) {
+      this.paginatorSettings.currentPage = tempMaxPages;
+    }
     this.setChangies();
   }
 

@@ -75,6 +75,7 @@ form {
 
   &_empty {
     height: 75vh;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 24px;
@@ -83,6 +84,11 @@ form {
     text-align: center;
     padding: 0 10px;
     line-height: 30px;
+
+    p {
+      font-size: inherit;
+      font-weight: inherit;
+    }
   }
 }
 
