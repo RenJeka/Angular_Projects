@@ -46,10 +46,12 @@ export class PaginationService {
   }
 
   set maximumObjects(value: number) {
+    console.log("maximumObjects: ", value);
     this._maximumObjects = value;
     this.paginatorSettings.maximumPages = this.getMaximumPage();
-    console.log("maximumObjects: ", value);
     console.log("this.paginatorSettings.maximumPages: ", this.paginatorSettings.maximumPages);
+    console.log("this.currentPage: ", this.paginatorSettings.currentPage );
+
     this.recalculatePaging();
 
   }
@@ -88,18 +90,22 @@ export class PaginationService {
       endPagingNumber = this.paginatorSettings.maximumPages
     }
 
-    if (endPagingNumber < this.paginatorSettings.maximumPages) {
-      // for (let i = 0; i < this.paginatorSettings.paginatorScaleLength; i++) {
-      //   pages.push(startPagingNumber);
-      //   startPagingNumber++
-      // }
-      for (let i = 0; i < endPagingNumber; i++) {
+    if (endPagingNumber <= this.paginatorSettings.maximumPages) {
+
+      for (let i = 0; i < this.paginatorSettings.paginatorScaleLength; i++) {
         pages.push(startPagingNumber);
         startPagingNumber++
       }
+      // for (let i = 0; i < endPagingNumber; i++) {
+      //   pages.push(startPagingNumber);
+      //   startPagingNumber++
+      // }
       this.paginatorSettings.paging = pages;
     } else {
       startPagingNumber = this.paginatorSettings.maximumPages - (this.paginatorSettings.paginatorScaleLength - 1);
+      // if (startPagingNumber <= 0) {
+      //   startPagingNumber = 1
+      // }
       for (let i = 0; i < this.paginatorSettings.paginatorScaleLength; i++) {
         pages.push(startPagingNumber);
         startPagingNumber++
@@ -153,10 +159,11 @@ export class PaginationService {
   changeResultsPerPage(numberOfResultsPerPage: number): void {
     // this.getMaximumPage()
     //   .then((responseMaxPage: number) => {
-        let tempMaxPages = this.getMaximumPage();
+        let tempMaxPages: number;
         let isCurrentPageOverLimit: boolean;
 
         this.paginatorSettings.objectPerPage = numberOfResultsPerPage;
+        tempMaxPages = this.getMaximumPage();
         isCurrentPageOverLimit = this.paginatorSettings.currentPage > tempMaxPages;
         // Если максимальное кол-во страниц меньше (пользователь выбрал больше результатов на странице) и текущая
         // страница выходит за пределы (максимально-возможной страницы) — тогда перенаправляем пользователя на текущую

@@ -105,6 +105,7 @@ export class DataService {
     } else {
       delete this.urlQueryParams.q
     }
+    this.paginationService.paginatorSettings.currentPage = 1;
     this.setUpDataService(this.getCollection());
   }
 
@@ -123,6 +124,7 @@ export class DataService {
    */
   public searchByTag(searchingTagObj: { [propName: string]: any }) {
     this.fillUrlQueryParams(searchingTagObj);
+    this.paginationService.paginatorSettings.currentPage = 1;
     this.setUpDataService(this.getCollection());
   }
 
