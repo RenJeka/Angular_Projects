@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Params} from "@angular/router";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 
 import {IArtCollection} from "src/app/shared/iart-collection";
 import {IArtObject} from "src/app/shared/iart-object";
@@ -48,7 +48,7 @@ export class DataService {
     'f.dating.period',
     'f.normalized32Colors.hex',
   ];
-  private setUpDataServicePromise: Promise<IArtCollection>;
+  // private setUpDataServicePromise: Promise<IArtCollection>; // TODO: deprecated (need to delete)
 
   showFavorite = false;
   artCollection: IArtCollection;
@@ -56,17 +56,19 @@ export class DataService {
   currentArtObjectDetails: IArtObjectDetails;
   isArtCollectionLoaded = false;
   isObjDetailsLoaded = false;
-
+  maximumObjectsStream$: Subject<number>;
   favoriteArtCollection: IArtObjectDetails[] = [];
   constructor(
     private http: HttpClient,
     private paginationService: PaginationService,
   ) {
+    // this.setUpDataService(this.getCollection());
     this.paginationService.paginatorStream$
       .subscribe((paginationSettings) => {
         this.urlQueryParams.p = paginationSettings.currentPage.toString();
         this.urlQueryParams.ps = paginationSettings.objectPerPage.toString();
-        this.setUpDataServicePromise = this.setUpDataService(this.getCollection());
+        // this.setUpDataServicePromise = this.setUpDataService(this.getCollection());
+        this.setUpDataService(this.getCollection())
       });
   }
 
@@ -180,7 +182,7 @@ export class DataService {
   }
 
   /**
-   * Метод записывает необходимые свойства сервиса при ответе от сервера.
+   * Метод записывает необходимые свойства этого сервиса (data.servise) при ответе от сервера.
    * @param observable Observable-объект запроса данных (IArtCollection)
    */
   public setUpDataService(observable: Observable<IArtCollection>): Promise<IArtCollection> {
@@ -190,6 +192,8 @@ export class DataService {
         this.artCollection = responseArtCollection;
         this.artObjects = responseArtCollection.artObjects;
         this.isArtCollectionLoaded = true;
+        this.paginationService.maximumObjects = responseArtCollection.count;
+        // this.maximumObjectsStream$.next(responseArtCollection.count);
         resolve(responseArtCollection)
       })
     })
