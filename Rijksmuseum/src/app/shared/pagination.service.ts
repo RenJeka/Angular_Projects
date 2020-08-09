@@ -84,34 +84,77 @@ export class PaginationService {
     if (startPagingNumber <= 0) {
       startPagingNumber = 1
     }
-    // Находим номер страницы, с которой заканчивается пагинация
+    // Находим номер страницы, на котором заканчивается пагинация
     endPagingNumber = +this.paginatorSettings.currentPage + halfPaging;
+      // Если номер, на котором заканчивается пагинация — выходитт за пределы допустимого
     if (endPagingNumber > this.paginatorSettings.maximumPages) {
       endPagingNumber = this.paginatorSettings.maximumPages
     }
 
-    if (endPagingNumber <= this.paginatorSettings.maximumPages) {
+    // TODO: как можно отрефакторить этот код, чтобы не было множества проверок
 
-      for (let i = 0; i < this.paginatorSettings.paginatorScaleLength; i++) {
+    // Случай, если страниц меньше, чем paginatorScaleLength (по умолч.  5)
+    if (this.paginatorSettings.maximumPages < this.paginatorSettings.paginatorScaleLength) {
+      for (let i = 0; i < endPagingNumber; i++) {
         pages.push(startPagingNumber);
         startPagingNumber++
       }
-      // for (let i = 0; i < endPagingNumber; i++) {
-      //   pages.push(startPagingNumber);
-      //   startPagingNumber++
-      // }
-      this.paginatorSettings.paging = pages;
     } else {
-      startPagingNumber = this.paginatorSettings.maximumPages - (this.paginatorSettings.paginatorScaleLength - 1);
-      // if (startPagingNumber <= 0) {
-      //   startPagingNumber = 1
-      // }
-      for (let i = 0; i < this.paginatorSettings.paginatorScaleLength; i++) {
-        pages.push(startPagingNumber);
-        startPagingNumber++
+      // Случай для последних страниц (Если предполагаемая последняя страница (endPagingNumber) вышла за пределы
+      // допустимого)
+      if (endPagingNumber === this.paginatorSettings.maximumPages) {
+        startPagingNumber = this.paginatorSettings.maximumPages - (this.paginatorSettings.paginatorScaleLength - 1);
+        for (let i = 0; i < this.paginatorSettings.paginatorScaleLength; i++) {
+          pages.push(startPagingNumber);
+          startPagingNumber++
+        }
+        // Все остальные случаи
+      } else {
+        for (let i = 0; i < this.paginatorSettings.paginatorScaleLength; i++) {
+          pages.push(startPagingNumber);
+          startPagingNumber++
+        }
       }
-      this.paginatorSettings.paging = pages;
     }
+
+    // if (endPagingNumber < this.paginatorSettings.maximumPages) {
+    //
+    //   // Случай, если страниц меньше, чем paginatorScaleLength (по умолч.  5)
+    //   if (this.paginatorSettings.maximumPages < this.paginatorSettings.paginatorScaleLength) {
+    //     for (let i = 0; i < endPagingNumber; i++) {
+    //       pages.push(startPagingNumber);
+    //       startPagingNumber++
+    //     }
+    //   } else {
+    //     for (let i = 0; i < this.paginatorSettings.paginatorScaleLength; i++) {
+    //       pages.push(startPagingNumber);
+    //       startPagingNumber++
+    //     }
+    //   }
+    //   // this.paginatorSettings.paging = pages;
+    //
+    //   // Случай для первых или последних номеров страниц
+    // } else {
+    //   // if (startPagingNumber <= 0) {
+    //   //   startPagingNumber = 1
+    //   // }
+    //
+    //   if (this.paginatorSettings.maximumPages < this.paginatorSettings.paginatorScaleLength) {
+    //     for (let i = 0; i < endPagingNumber; i++) {
+    //       pages.push(startPagingNumber);
+    //       startPagingNumber++
+    //     }
+    //   }else {
+    //     startPagingNumber = this.paginatorSettings.maximumPages - (this.paginatorSettings.paginatorScaleLength - 1);
+    //     for (let i = 0; i < this.paginatorSettings.paginatorScaleLength; i++) {
+    //       pages.push(startPagingNumber);
+    //       startPagingNumber++
+    //     }
+    //   }
+    //
+    //
+    // }
+    this.paginatorSettings.paging = pages;
   }
 
   /**
