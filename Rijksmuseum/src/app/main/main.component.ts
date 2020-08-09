@@ -31,5 +31,6 @@ export class MainComponent implements OnInit {
 
   onSubmit(): void {
     this.dataService.searchCollection(this.orderBy.value, this.searchKeyword.value)
+    this.searchKeyword.reset();
   }
 }
