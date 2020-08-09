@@ -8,9 +8,12 @@
   <div class="info-block">
     <div
       class="image"
-      [ngClass]="{'not-image': !artObjectDetails.artObject.webImage.url}"
+      [ngClass]="{'not-image': !artObjectDetails.artObject.webImage}"
       *ngIf="artObjectDetails; else loadingImage"
-      [ngStyle]="{ backgroundImage: 'url(' + artObjectDetails.artObject.webImage.url + ')'}"
+      [ngStyle]="{
+        backgroundImage: artObjectDetails.artObject.webImage ? 'url(' +
+        artObjectDetails.artObject.webImage.url + ')' : ''
+      }"
       imageScale
     ></div>
     <div class="details" *ngIf="artObjectDetails; else loadingDetails">
