@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
-import {DataService} from "./data.service";
+import {BehaviorSubject} from "rxjs";
 // import {DataService} from "src/app/shared/data.service";
 
 type OddNumbers = 1 | 3 | 5 | 7 | 9 | 11 | 13 | 15; // TODO: Найти способ указать в интерфейсе только нечетные числа
@@ -24,7 +23,6 @@ export class PaginationService {
     currentPage: 1,
     paginatorScaleLength: 5 as OddNumbers,
     maximumPages: null,
-    maximumObjects: 0,
     objectPerPage: 30,
     allowedResultsPerPage: ["20", "30", "50", "100"],
     paging: []
@@ -40,34 +38,22 @@ export class PaginationService {
 
   };
 
+  // TODO: Как создать свойства "get" и "set" внутри объекта ( напр. внутри "paginatorSettings" — свойство
+  //  maximumObjects)
   private _maximumObjects: number;
   get maximumObjects(): number {
     return this._maximumObjects;
   }
 
   set maximumObjects(value: number) {
-    console.log("maximumObjects: ", value);
     this._maximumObjects = value;
     this.paginatorSettings.maximumPages = this.getMaximumPage();
-    console.log("this.paginatorSettings.maximumPages: ", this.paginatorSettings.maximumPages);
-    console.log("this.currentPage: ", this.paginatorSettings.currentPage );
-
     this.recalculatePaging();
-
   }
 
   paginatorStream$: BehaviorSubject<IPaginatorSettings> = new BehaviorSubject(this.paginatorSettings);
 
-  constructor(
-    // private dataService: DataService
-  ){
-    // this.dataService.maximumObjectsStream$
-    //   .subscribe((resultMaximumObjects) => {
-    //     this.paginatorSettings.maximumObjects = resultMaximumObjects;
-    //     this.paginatorSettings.maximumPages = this.getMaximumPage();
-    //     this.recalculatePaging();
-    //   });
-  }
+  constructor() {}
 
   /**
    * Метод пересчитывает шкалу сос траницами (шкалу пагинации)
@@ -86,13 +72,12 @@ export class PaginationService {
     }
     // Находим номер страницы, на котором заканчивается пагинация
     endPagingNumber = +this.paginatorSettings.currentPage + halfPaging;
-      // Если номер, на котором заканчивается пагинация — выходитт за пределы допустимого
+    // Если номер, на котором заканчивается пагинация — выходитт за пределы допустимого
     if (endPagingNumber > this.paginatorSettings.maximumPages) {
       endPagingNumber = this.paginatorSettings.maximumPages
     }
 
     // TODO: как можно отрефакторить этот код, чтобы не было множества проверок
-
     // Случай, если страниц меньше, чем paginatorScaleLength (по умолч.  5)
     if (this.paginatorSettings.maximumPages < this.paginatorSettings.paginatorScaleLength) {
       for (let i = 0; i < endPagingNumber; i++) {
@@ -117,43 +102,6 @@ export class PaginationService {
       }
     }
 
-    // if (endPagingNumber < this.paginatorSettings.maximumPages) {
-    //
-    //   // Случай, если страниц меньше, чем paginatorScaleLength (по умолч.  5)
-    //   if (this.paginatorSettings.maximumPages < this.paginatorSettings.paginatorScaleLength) {
-    //     for (let i = 0; i < endPagingNumber; i++) {
-    //       pages.push(startPagingNumber);
-    //       startPagingNumber++
-    //     }
-    //   } else {
-    //     for (let i = 0; i < this.paginatorSettings.paginatorScaleLength; i++) {
-    //       pages.push(startPagingNumber);
-    //       startPagingNumber++
-    //     }
-    //   }
-    //   // this.paginatorSettings.paging = pages;
-    //
-    //   // Случай для первых или последних номеров страниц
-    // } else {
-    //   // if (startPagingNumber <= 0) {
-    //   //   startPagingNumber = 1
-    //   // }
-    //
-    //   if (this.paginatorSettings.maximumPages < this.paginatorSettings.paginatorScaleLength) {
-    //     for (let i = 0; i < endPagingNumber; i++) {
-    //       pages.push(startPagingNumber);
-    //       startPagingNumber++
-    //     }
-    //   }else {
-    //     startPagingNumber = this.paginatorSettings.maximumPages - (this.paginatorSettings.paginatorScaleLength - 1);
-    //     for (let i = 0; i < this.paginatorSettings.paginatorScaleLength; i++) {
-    //       pages.push(startPagingNumber);
-    //       startPagingNumber++
-    //     }
-    //   }
-    //
-    //
-    // }
     this.paginatorSettings.paging = pages;
   }
 
@@ -161,23 +109,18 @@ export class PaginationService {
    * Метод пересчитывает и перезаписывает значение максимальной страницы в пагинации.
    */
   private getMaximumPage(): number {
-    console.log("getMaximumPage worked!");
+    let irregularMaximumPage: number;
 
-    // return new Promise<number>((resolve, reject) => {
-      let irregularMaximumPage: number;
-
-      if (this.maximumObjects >= 10000) {
-        return Math.floor(10000 / this.paginatorSettings.objectPerPage);
+    if (this.maximumObjects >= 10000) {
+      return Math.floor(10000 / this.paginatorSettings.objectPerPage);
+    } else {
+      irregularMaximumPage = Math.floor(this.maximumObjects / this.paginatorSettings.objectPerPage);
+      if (irregularMaximumPage === 0) {
+        return 1;
       } else {
-        irregularMaximumPage = Math.floor(this.maximumObjects / this.paginatorSettings.objectPerPage);
-        if (irregularMaximumPage === 0){
-          return 1;
-        } else {
-          return irregularMaximumPage;
-        }
+        return irregularMaximumPage;
       }
-    // })
-
+    }
   }
 
   /**
@@ -186,37 +129,30 @@ export class PaginationService {
    */
   private setChangies(currentPage?: number): void {
 
-    // this.getMaximumPage()
-    //   .then((responseMaxPage) => {
-        if (currentPage) {
-          this.paginatorSettings.currentPage = currentPage;
-        }
-        this.paginatorSettings.maximumPages = this.getMaximumPage();
-        this.recalculatePaging();
-        this.paginatorStream$.next(this.paginatorSettings);
-      // })
-
+    if (currentPage) {
+      this.paginatorSettings.currentPage = currentPage;
+    }
+    this.paginatorSettings.maximumPages = this.getMaximumPage();
+    this.recalculatePaging();
+    this.paginatorStream$.next(this.paginatorSettings);
   }
 
   // ===== USER INTERFACE — START =====
   changeResultsPerPage(numberOfResultsPerPage: number): void {
-    // this.getMaximumPage()
-    //   .then((responseMaxPage: number) => {
-        let tempMaxPages: number;
-        let isCurrentPageOverLimit: boolean;
 
-        this.paginatorSettings.objectPerPage = numberOfResultsPerPage;
-        tempMaxPages = this.getMaximumPage();
-        isCurrentPageOverLimit = this.paginatorSettings.currentPage > tempMaxPages;
-        // Если максимальное кол-во страниц меньше (пользователь выбрал больше результатов на странице) и текущая
-        // страница выходит за пределы (максимально-возможной страницы) — тогда перенаправляем пользователя на текущую
-        // максимально возможную страницу
-        if ((tempMaxPages < this.paginatorSettings.maximumPages) && isCurrentPageOverLimit) {
-          this.paginatorSettings.currentPage = tempMaxPages;
-        }
-        this.setChangies();
-      // })
+    let tempMaxPages: number;
+    let isCurrentPageOverLimit: boolean;
 
+    this.paginatorSettings.objectPerPage = numberOfResultsPerPage;
+    tempMaxPages = this.getMaximumPage();
+    isCurrentPageOverLimit = this.paginatorSettings.currentPage > tempMaxPages;
+    // Если максимальное кол-во страниц меньше (пользователь выбрал больше результатов на странице) и текущая
+    // страница выходит за пределы (максимально-возможной страницы) — тогда перенаправляем пользователя на текущую
+    // максимально возможную страницу
+    if ((tempMaxPages < this.paginatorSettings.maximumPages) && isCurrentPageOverLimit) {
+      this.paginatorSettings.currentPage = tempMaxPages;
+    }
+    this.setChangies();
   }
 
   changePage(page: number): void {
@@ -251,6 +187,5 @@ export class PaginationService {
       this.setChangies(this.paginatorSettings.maximumPages);
     }
   }
-
   // ===== USER INTERFACE — FINISH =====
 }

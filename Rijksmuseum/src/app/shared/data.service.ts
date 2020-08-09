@@ -48,7 +48,6 @@ export class DataService {
     'f.dating.period',
     'f.normalized32Colors.hex',
   ];
-  // private setUpDataServicePromise: Promise<IArtCollection>; // TODO: deprecated (need to delete)
 
   showFavorite = false;
   artCollection: IArtCollection;
@@ -56,18 +55,15 @@ export class DataService {
   currentArtObjectDetails: IArtObjectDetails;
   isArtCollectionLoaded = false;
   isObjDetailsLoaded = false;
-  maximumObjectsStream$: Subject<number>;
   favoriteArtCollection: IArtObjectDetails[] = [];
   constructor(
     private http: HttpClient,
     private paginationService: PaginationService,
   ) {
-    // this.setUpDataService(this.getCollection());
     this.paginationService.paginatorStream$
       .subscribe((paginationSettings) => {
         this.urlQueryParams.p = paginationSettings.currentPage.toString();
         this.urlQueryParams.ps = paginationSettings.objectPerPage.toString();
-        // this.setUpDataServicePromise = this.setUpDataService(this.getCollection());
         this.setUpDataService(this.getCollection())
       });
   }
@@ -195,7 +191,6 @@ export class DataService {
         this.artObjects = responseArtCollection.artObjects;
         this.isArtCollectionLoaded = true;
         this.paginationService.maximumObjects = responseArtCollection.count;
-        // this.maximumObjectsStream$.next(responseArtCollection.count);
         resolve(responseArtCollection)
       })
     })
