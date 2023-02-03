@@ -3,32 +3,48 @@ table {
   margin-bottom: 1rem;
   border-collapse: collapse;
 
+  th {
+    font-weight: bold;
+    color: var(--lightblue-color);
+  }
+
   td, th {
-    border: 1px solid #000;
+    text-align: center;
     padding: .5rem 1rem;
+
+    @media screen and (max-width: 480px){
+      padding: 0.1rem
+    }
   }
 
   td {
     text-align: center;
     transition: all .2s;
+    //height: 3.5em;
 
     &.disabled {
       opacity: .5;
     }
 
     &:hover:not(.disabled) {
-      background: #eeeeee;
+      background-color: #eeeeee3d;
       cursor: pointer;
     }
 
     .active {
       color: var(--primary-color);
       font-weight: bold;
+      &.selected {
+        color: var(--primary-color);
+      }
     }
 
     .selected {
-      color: blue;
+      display: block;
+      font-weight: bold;
+      transform: scale(1.5, 1.5);
+      color: var(--blue-color);
+      //background-color: rgba(238, 238, 238, 0.1);
     }
-
   }
 }
