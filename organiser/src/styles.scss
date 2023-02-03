@@ -5,6 +5,7 @@
   --primary-color: #ff9800;
   --dark-color: #424242;
   --light-color: #eeeeee;
+  --red-color: #e57373;
   --blue-color: #1095c1;
   --lightblue-color: #81d4fa;
 }
@@ -47,7 +48,6 @@ ul {
   cursor: pointer;
   margin-right: .5rem;
   transition: opacity .2s;
-  outline: none;
 
   &:hover:not(:disabled) {
     opacity: .8;

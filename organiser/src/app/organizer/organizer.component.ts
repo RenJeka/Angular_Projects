@@ -15,8 +15,10 @@ export class OrganizerComponent implements OnInit {
   form: FormGroup;
   tasks: Task[] = [];
 
-  constructor(public dateService: DateService,
-              private taskServise: TasksService) { }
+  constructor(
+      public dateService: DateService,
+      private taskServise: TasksService
+  ) { }
 
   ngOnInit(): void {
     this.dateService.date.pipe(
@@ -37,7 +39,7 @@ export class OrganizerComponent implements OnInit {
       date: this.dateService.date.value.format("DD-MM-YYYY")
     };
 
-    this.taskServise.create(task)
+    this.taskServise.createTask(task)
         .subscribe(
             task => {
               this.tasks.push(task);
@@ -48,13 +50,15 @@ export class OrganizerComponent implements OnInit {
             err => console.error(err)
         );
     console.log(title);
-
   }
 
   removeTask(task: Task) {
-    this.taskServise.remove(task).subscribe(() => {
-      this.tasks = this.tasks.filter(t => t.id !== task.id)
-    },
-        err => console.error(err))
+    this.taskServise.remove(task)
+        .subscribe(
+            () => {
+              this.tasks = this.tasks.filter(t => t.id !== task.id)
+            },
+            err => console.error(err)
+        )
   }
 }

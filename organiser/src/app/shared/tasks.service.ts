@@ -15,7 +15,7 @@ interface CreateResponse {
 
 @Injectable({providedIn: "root"})
 export class TasksService {
-    static url = "https://angular-practice-calenda-870ce.firebaseio.com/"
+    static url = "https://angular-practice-calenda-870ce.firebaseio.com/tasks"
     constructor(private http: HttpClient) { }
 
     load(date: moment.Moment):Observable<Task[]> {
@@ -32,7 +32,7 @@ export class TasksService {
             }))
     }
 
-    create(task: Task): Observable<Task> {
+    createTask(task: Task): Observable<Task> {
         return this.http
             .post<CreateResponse>(`${TasksService.url}/${task.date}.json`, task)
             .pipe(map(res => {
