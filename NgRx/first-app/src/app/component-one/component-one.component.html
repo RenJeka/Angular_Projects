@@ -1,0 +1,18 @@
+<div class="container">
+  <h3>Component-1</h3>
+
+  <h6>Counter:</h6>
+  <i>Please click button to increase counter</i>
+  <button (click)="increaseCount()">Increase Counter</button>
+
+  <br>
+  <h6>Message:</h6>
+  <i>Please type message and click 'Send Message'</i>
+  <input placeholder="type your message here..." type="text" [(ngModel)]="message">
+  <button (click)="sendMessage()">Send Message</button>
+
+  <br>
+  <h6>Data:</h6>
+  <i>Please click 'Get post data' to get data from jsoplaceholder</i>
+  <button (click)="getData()">Get post data</button>
+</div>

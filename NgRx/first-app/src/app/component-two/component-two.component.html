@@ -1,0 +1,12 @@
+<div class="container">
+
+  <h3>Component-2</h3>
+
+  <h6>Counter: </h6>
+  <div class="counter">{{count$ | async}}</div>
+  <h6>Message: </h6>
+
+  <textarea class="message" cols="30" rows="10">{{message$ | async}}</textarea>
+  <h6>post Data (json): </h6>
+  <textarea class="message data" cols="30" rows="10">{{data$ | async | json}}</textarea>
+</div>
