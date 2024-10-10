@@ -1,0 +1,16 @@
+
+<section class="section-wrapper currency">
+
+    <select #inpCurrency name="currency" class="input-currency">
+      @for (currency of currencies; track currency.id) {
+      <option [value]="currency.id">{{ currency.name }}</option>
+      } @empty {
+      <option>please, choose currency</option>
+      }
+    </select>
+    <button class="btn-submit" type="submit" (click)="subscribeCurrency(inpCurrency.value)">Subscribe</button>
+</section>
+@if (marketPrice) {
+  <h1>Рыночная цена:</h1>
+  <p>{{ marketPrice.price }}</p>
+}

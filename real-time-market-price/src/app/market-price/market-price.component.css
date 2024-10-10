@@ -1,0 +1,29 @@
+:host  {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  justify-content: space-between;
+  border: 3px solid #2E2E2E;
+  display: flex;
+}
+
+.section-wrapper {
+  width: 100%;
+  display: flex;
+  padding: 15px;
+}
+
+.currency {
+  height: 100px;
+}
+
+.input-currency {
+  width: 80%;
+  padding: 15px;
+}
+
+.btn-submit {
+  width: 20%;
+  margin: 15px;
+  border-radius: 7px;
+}
